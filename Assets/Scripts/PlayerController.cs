@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour {
 				}
 
 				transform.position = cols[index].transform.position;
-				cols[index].GetComponent<EnemyController>().Kill();
+				cols[index].GetComponent<EnemyController>().KillInside();
 			}
 		}
 

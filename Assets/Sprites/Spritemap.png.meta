@@ -244,7 +244,7 @@ TextureImporter:
     second: Spritemap_79
   - first:
       213: 7084402526396512495
-    second: Spritemap_80
+    second: Blood
   - first:
       213: -2332314046988634193
     second: Spritemap_81
@@ -2551,7 +2551,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_80
+      name: Blood
       rect:
         serializedVersion: 2
         x: 0

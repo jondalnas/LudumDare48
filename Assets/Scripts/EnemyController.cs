@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyController : MonoBehaviour {
 	public GameObject player;
@@ -14,10 +15,20 @@ public class EnemyController : MonoBehaviour {
 	public Sprite machine;
 	public Sprite big;
 
+	private ParticleSystem blood;
+	private ParticleSystem insideBlood;
+	private Transform bloodTransform;
+	private bool dead;
 
 	public EnemyType type;
 	// Start is called before the first frame update
 	void Start() {
+		bloodTransform = transform.Find("Blood");
+		blood = bloodTransform.GetComponent<ParticleSystem>();
+		insideBlood = transform.Find("Inside Blood").GetComponent<ParticleSystem>();
+		blood.Stop();
+		insideBlood.Stop();
+
 		switch (type) {
 			case EnemyType.Brawler:
 				transform.GetComponentInChildren<SpriteRenderer>().sprite = brawler;
@@ -39,6 +50,8 @@ public class EnemyController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
+		if (dead) return;
+
 		Vector3 toPlayer = player.transform.position - transform.position;
 
 		Quaternion rot = Quaternion.LookRotation(toPlayer, Vector3.back);
@@ -47,7 +60,42 @@ public class EnemyController : MonoBehaviour {
 		transform.rotation = rot;
 	}
 
+	IEnumerator StopBlood(float time) {
+		yield return new WaitForSeconds(time);
+
+		blood.Pause();
+	}
+
+	IEnumerator StopInsideBlood(float time) {
+		yield return new WaitForSeconds(time);
+
+		insideBlood.Pause();
+	}
+
+	public void Kill(Vector2 dir) {
+		if (dead) return;
+
+		bloodTransform.rotation = Quaternion.Euler(Mathf.Atan2(dir.y, dir.x), 90, 0);
+
+		blood.Play();
+		dead = true;
+		StartCoroutine(StopBlood(0.05f));
+	}
+
 	public void Kill() {
-		Destroy(gameObject);
+		if (dead) return;
+
+		blood.Play();
+		dead = true;
+		StartCoroutine(StopBlood(0.05f));
+	}
+
+	public void KillInside() {
+		if (dead) return;
+
+		insideBlood.Play();
+		dead = true;
+		StartCoroutine(StopInsideBlood(0.1f));
+		transform.Find("Sprite").gameObject.SetActive(false);
 	}
 }
