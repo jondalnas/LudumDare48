@@ -1,0 +1,34 @@
+Grim Reaper infiltration enemy base:
+	Taking over enemies
+	Enemies can kill eachother
+	Small range teleport behind person
+	Stopping time when dying
+	Summon ability
+		Dog dragging peaple to hell
+	Using scythe as boomerang
+	Replay
+	Ranking based on aggression
+	If other enemies doesn't suspect you and you kill someone horrifically, then you stun them
+	Every level is introduced with a new enemy and a little cutscene
+	Purple "hell" particles behind you
+	
+	Game rules:
+		Can't preogress unless unseen or dead
+		Schythe is slow
+		80's
+	
+	enemies:
+		Pistol
+		Dog
+		Dog partol
+		Machinegun
+		Filler brawler
+		Strong pistol (can take more hits and looses libs every time)
+		Final dood
+		
+		
+		Holy molotov
+	
+	
+	
+	Rewind time
