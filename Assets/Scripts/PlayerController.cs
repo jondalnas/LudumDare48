@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour {
 	private BoxCollider2D scytheCollider;
 	private ContactFilter2D enemyContactFilter;
 
+	private CircleCollider2D mouseCollider;
+	private Transform mouseColliderTransform;
+
 	private Animator anim;
 
 	void Start() {
@@ -19,6 +22,9 @@ public class PlayerController : MonoBehaviour {
 		scytheLocation = transform.Find("Sprite").Find("Player Arm").Find("Scythe location");
 		scythe = transform.Find("Sprite").Find("Scythe");
 		scytheCollider = scythe.GetComponent<BoxCollider2D>();
+
+		mouseColliderTransform = transform.Find("Mouse collider");
+		mouseCollider = mouseColliderTransform.GetComponent<CircleCollider2D>();
 
 		anim = GetComponent<Animator>();
 
@@ -69,6 +75,28 @@ public class PlayerController : MonoBehaviour {
 				if (cols[0].gameObject.CompareTag("Enemy")) {
 					cols[0].gameObject.GetComponent<EnemyController>().Kill();
 				}
+			}
+		}
+
+		//Teleport
+		mouseColliderTransform.position = mouseWorldPos;
+
+		if (Input.GetButtonDown("Teleport")) {
+			Collider2D[] cols = new Collider2D[4];
+			int colNum;
+			if ((colNum = mouseCollider.OverlapCollider(enemyContactFilter, cols)) != 0) {
+				float dist = float.PositiveInfinity;
+				int index = -1;
+				for (int i = 0; i < colNum; i++) {
+					float currDist = (cols[i].transform.position - transform.position).sqrMagnitude;
+					if (currDist < dist) {
+						dist = currDist;
+						index = i;
+					}
+				}
+
+				transform.position = cols[index].transform.position;
+				cols[index].GetComponent<EnemyController>().Kill();
 			}
 		}
 
