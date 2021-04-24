@@ -998,11 +998,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8023797551697028109, guid: 86eee813466550a4dbb6f36f04d63719, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8536817070777937486, guid: 86eee813466550a4dbb6f36f04d63719, type: 3}
       propertyPath: m_LocalScale.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918243143363949979, guid: 86eee813466550a4dbb6f36f04d63719, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8918243143363949979, guid: 86eee813466550a4dbb6f36f04d63719, type: 3}
       propertyPath: player

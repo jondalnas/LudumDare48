@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8023797551697028109}
   - component: {fileID: 4642572353585771511}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pistol gun arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 405445644980998481}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.3125, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5858886326645771132}
   m_RootOrder: 1
@@ -109,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5083356093994816799}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 2.2, y: 0.06999993, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5858886326645771132}
@@ -4899,7 +4899,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8536817070777937486}
   - component: {fileID: 2743675956436542168}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pistol arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4984,8 +4984,8 @@ GameObject:
   - component: {fileID: 5858886326645771074}
   - component: {fileID: 5858886326645771075}
   - component: {fileID: 8918243143363949979}
-  - component: {fileID: 7186558439315541880}
-  m_Layer: 0
+  - component: {fileID: 348068390022300332}
+  m_Layer: 6
   m_Name: Pistol
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -5072,11 +5072,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 0
+  speed: 5
   minDist: 0.5
-  closeDist: 4
+  closeDist: 5
   pistolCooldown: 0.25
---- !u!95 &7186558439315541880
+--- !u!95 &348068390022300332
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -5105,7 +5105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5858886327684116789}
   - component: {fileID: 5858886327684116788}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5204,7 +5204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5961893530215294106}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 2.2, y: 0.06999993, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5858886326645771132}
@@ -9994,7 +9994,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7739352442485747250}
   - component: {fileID: 6968112817382882187}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Muzzle Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}

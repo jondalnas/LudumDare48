@@ -92,6 +92,11 @@ public abstract class EnemyController : MonoBehaviour {
 		blood.Play();
 		dead = true;
 		StartCoroutine(StopBlood(0.05f));
+
+		rb.simulated = false;
+		foreach (Collider2D col in GetComponentsInChildren<Collider2D>()) {
+			col.enabled = false;
+		}
 	}
 
 	public void Kill() {
@@ -100,6 +105,11 @@ public abstract class EnemyController : MonoBehaviour {
 		blood.Play();
 		dead = true;
 		StartCoroutine(StopBlood(0.05f));
+
+		rb.simulated = false;
+		foreach (Collider2D col in GetComponentsInChildren<Collider2D>()) {
+			col.enabled = false;
+		}
 	}
 
 	public void KillInside() {
@@ -109,5 +119,10 @@ public abstract class EnemyController : MonoBehaviour {
 		dead = true;
 		StartCoroutine(StopInsideBlood(0.1f));
 		transform.Find("Sprite").gameObject.SetActive(false);
+
+		rb.simulated = false;
+		foreach (Collider2D col in GetComponentsInChildren<Collider2D>()) {
+			col.enabled = false;
+		}
 	}
 }
