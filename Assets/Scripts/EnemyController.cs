@@ -10,7 +10,7 @@ public abstract class EnemyController : MonoBehaviour {
 	protected GameObject target;
 	protected bool hasTarget;
 	public float minDist = 0.5f;
-	public float closeDist = 1.2f;
+	public float closeDist = 3f;
 
 	// Start is called before the first frame update
 	void Start() {

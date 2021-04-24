@@ -199,7 +199,7 @@ TextureImporter:
     second: Spritemap_64
   - first:
       213: 7899325444461006879
-    second: Spritemap_65
+    second: Muzzle Flash
   - first:
       213: -1465385916753516702
     second: Spritemap_66
@@ -247,7 +247,7 @@ TextureImporter:
     second: Spritemap_80
   - first:
       213: -2332314046988634193
-    second: Spritemap_81
+    second: Bullet
   - first:
       213: 7747951347112656777
     second: Spritemap_82
@@ -1571,8 +1571,8 @@ TextureImporter:
         y: 208
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.20269871}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1907,8 +1907,8 @@ TextureImporter:
         y: 192
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.20823479}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2236,7 +2236,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_65
+      name: Muzzle Flash
       rect:
         serializedVersion: 2
         x: 16
@@ -2572,7 +2572,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_81
+      name: Bullet
       rect:
         serializedVersion: 2
         x: 16
