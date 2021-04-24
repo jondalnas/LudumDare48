@@ -10,7 +10,7 @@ TextureImporter:
     second: Scythe
   - first:
       213: -9142744831963111041
-    second: Spritemap_2
+    second: Player Arm
   - first:
       213: -5170449299570770182
     second: Spritemap_3
@@ -244,7 +244,7 @@ TextureImporter:
     second: Spritemap_79
   - first:
       213: 7084402526396512495
-    second: Spritemap_80
+    second: Blood
   - first:
       213: -2332314046988634193
     second: Bullet
@@ -899,8 +899,8 @@ TextureImporter:
         y: 240
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.6875, y: 0.375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -913,15 +913,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_2
+      name: Player Arm
       rect:
         serializedVersion: 2
         x: 32
         y: 240
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1550,8 +1550,8 @@ TextureImporter:
         y: 208
         width: 16
         height: 16
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2551,7 +2551,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_80
+      name: Blood
       rect:
         serializedVersion: 2
         x: 0
