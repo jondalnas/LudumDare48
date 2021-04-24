@@ -6,8 +6,6 @@ public class Pistol : EnemyController {
 	override protected void NoticePlayer() {
 		hasTarget = true;
 		target = player;
-
-		Debug.Log("Hello");
 	}
 
 	override protected void HitTarget() {

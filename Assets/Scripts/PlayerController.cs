@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 	private Rigidbody2D rb;
 	public int speed = 5;
+	public Vector2 inputVelocity;
 
 	private Transform scytheLocation;
 	private Transform scythe;
@@ -14,8 +15,12 @@ public class PlayerController : MonoBehaviour {
 
 	private CircleCollider2D mouseCollider;
 	private Transform mouseColliderTransform;
+	public float teleportCooldown = 4f;
+	private float teleportTimer;
 
 	private Animator anim;
+
+	private float timeScaleTarget = 1;
 
 	void Start() {
 		rb = GetComponent<Rigidbody2D>();
@@ -35,10 +40,19 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
-		//Look at mouse
+		Time.timeScale += (timeScaleTarget - Time.timeScale) / 10f;
+
+		if (Time.timeScale < 0.05) Time.timeScale = 0;
+		if (Time.timeScale > 0.95) Time.timeScale = 1;
+
+		inputVelocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
 		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-		 if (scytheCooldownTimer < scytheCooldown * 0.7f) {
+		if (Time.timeScale < 0.1) goto timestop;
+
+		//Look at mouse
+		if (scytheCooldownTimer < scytheCooldown * 0.7f) {
 			lockedRot = transform.rotation;
 		} else if (scytheCooldownTimer < scytheCooldown) { //When cooldown is 70% done
 			Vector3 toMouse = mouseWorldPos - transform.position;
@@ -58,9 +72,6 @@ public class PlayerController : MonoBehaviour {
 			transform.rotation = rot;
 		}
 
-		//Player movement
-		rb.velocity = (Input.GetAxis("Horizontal") * Vector2.right + Input.GetAxis("Vertical") * Vector2.up) * speed;
-
 		//Swing scythe
 		scytheCooldownTimer += Time.deltaTime;
 		if (scytheCooldownTimer > scytheCooldown) {
@@ -78,10 +89,13 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
+		timestop:
+
 		//Teleport
 		mouseColliderTransform.position = mouseWorldPos;
 
-		if (Input.GetButtonDown("Teleport")) {
+		teleportTimer -= Time.deltaTime;
+		if (teleportTimer < 0 && Input.GetButtonDown("Teleport")) {
 			Collider2D[] cols = new Collider2D[4];
 			int colNum;
 			if ((colNum = mouseCollider.OverlapCollider(enemyContactFilter, cols)) != 0) {
@@ -95,16 +109,34 @@ public class PlayerController : MonoBehaviour {
 					}
 				}
 
+				teleportTimer = teleportCooldown;
+
 				transform.position = cols[index].transform.position;
 				cols[index].GetComponent<EnemyController>().KillInside();
+
+				if (timeScaleTarget != 1) timeScaleTarget = 1;
 			}
 		}
+	}
+
+	void FixedUpdate() {
+		//Player movement
+		rb.velocity = inputVelocity * speed * Time.fixedDeltaTime;
 
 		//Handle scythe location
 		scythe.position = scytheLocation.position;
 	}
 
-	public void kill() {
-		Debug.Log("Dead");
+	public void Kill() {
+		if (teleportTimer < 0) {
+			//Final chance
+
+			if (timeScaleTarget == 0) return;
+
+			timeScaleTarget = 0;
+			Time.timeScale = 0.1f;
+		} else {
+			//Kill player
+		}
 	}
 }
