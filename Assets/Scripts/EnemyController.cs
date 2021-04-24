@@ -1,49 +1,59 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-public class EnemyController : MonoBehaviour {
+public abstract class EnemyController : MonoBehaviour {
 	public GameObject player;
-	public enum EnemyType {
-		Brawler,
-		Pistol,
-		Machine,
-		Big
-	}
-	[Header(" Sprites" )]
-	public Sprite brawler;
-	public Sprite pistol;
-	public Sprite machine;
-	public Sprite big;
+	protected Rigidbody2D rb;
+	public float speed;
+	private bool playerNoticed;
+	protected Animator anim;
+	protected GameObject target;
+	protected bool hasTarget;
+	public float minDist = 0.5f;
+	public float closeDist = 1.2f;
 
-
-	public EnemyType type;
 	// Start is called before the first frame update
 	void Start() {
-		switch (type) {
-			case EnemyType.Brawler:
-				transform.GetComponentInChildren<SpriteRenderer>().sprite = brawler;
-			break;
-
-			case EnemyType.Pistol:
-				transform.GetComponentInChildren<SpriteRenderer>().sprite = pistol;
-			break;
-
-			case EnemyType.Machine:
-			transform.GetComponentInChildren<SpriteRenderer>().sprite = machine;
-			break;
-
-			case EnemyType.Big:
-			transform.GetComponentInChildren<SpriteRenderer>().sprite = big;
-			break;
-		}
+		rb = GetComponent<Rigidbody2D>();
+		anim = GetComponent<Animator>();
 	}
 
 	// Update is called once per frame
 	void Update() {
-		Vector3 toPlayer = player.transform.position - transform.position;
+		if (hasTarget) {
+			Vector3 move = target.transform.position - transform.position;
+			float dist = move.magnitude;
+			if (dist < closeDist) {
+				CloseToTarget();
+			} else {
+				AwayFromTarget();
+				rb.velocity = move / dist * speed;
+				Quaternion rot = Quaternion.LookRotation(move, Vector3.back);
+				rot.x = 0;
+				rot.y = 0;
+				transform.rotation = rot;
+				anim.SetBool("Run", true);
+			}
+		} else {
+			anim.SetBool("Run", false);
+		}
 
-		Quaternion rot = Quaternion.LookRotation(toPlayer, Vector3.back);
-		rot.x = 0;
-		rot.y = 0;
-		transform.rotation = rot;
+		if (playerNoticed) {
+			NoticePlayer();
+		} else {
+			Vector3 toPlayer = player.transform.position - transform.position;
+			RaycastHit2D hit = Physics2D.Raycast(transform.position, toPlayer, toPlayer.magnitude, LayerMask.GetMask("Level"));
+			if (!hit) {
+				playerNoticed = true;
+			}
+		}
 	}
+
+	protected abstract void NoticePlayer();
+
+	protected abstract void HitTarget();
+
+	protected abstract void AwayFromTarget();
+
+	protected abstract void CloseToTarget();
 }

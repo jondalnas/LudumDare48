@@ -20,4 +20,8 @@ public class PlayerController : MonoBehaviour {
 
 		rb.velocity = (Input.GetAxis("Horizontal") * Vector2.right + Input.GetAxis("Vertical") * Vector2.up) * speed;
 	}
+
+	public void kill() {
+		Debug.Log("Dead");
+	}
 }
