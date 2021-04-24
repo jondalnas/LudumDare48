@@ -46,4 +46,8 @@ public class EnemyController : MonoBehaviour {
 		rot.y = 0;
 		transform.rotation = rot;
 	}
+
+	public void Kill() {
+		Destroy(gameObject);
+	}
 }

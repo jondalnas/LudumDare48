@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5026341296300849244}
   - component: {fileID: 5026341296300849245}
   - component: {fileID: 5026341296300849247}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -94,6 +94,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  brawler: {fileID: 0}
+  pistol: {fileID: 0}
+  machine: {fileID: 0}
+  big: {fileID: 0}
+  type: 0
 --- !u!1 &5026341297409950248
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5026341297409950251}
   - component: {fileID: 5026341297409950250}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
