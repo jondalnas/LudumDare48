@@ -166,15 +166,15 @@ public abstract class EnemyController : MonoBehaviour {
 		dead = true;
 		StartCoroutine(StopBlood(0.05f));
 
-		if (!beingControlled) return;
-
-		beingControlled = false;
-		player.GetComponent<PlayerController>().LoseControl();
-
 		rb.simulated = false;
 		foreach (Collider2D col in GetComponentsInChildren<Collider2D>()) {
 			col.enabled = false;
 		}
+
+		if (!beingControlled) return;
+
+		beingControlled = false;
+		player.GetComponent<PlayerController>().LoseControl();
 	}
 
 	public void KillInside() {

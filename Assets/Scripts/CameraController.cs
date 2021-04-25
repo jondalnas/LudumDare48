@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 	public Transform target;
-	public float cameraMouseFollow = 0.1f;
-	public float cameraTargetFollow = 0.1f;
+	public float cameraMouseFollow = 0.01f;
+	public float cameraTargetFollow = 5f;
 	public Material blackAndWhiteMat;
 	private float blend;
 
