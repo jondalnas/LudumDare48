@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
+using System;
 
 public abstract class EnemyController : MonoBehaviour {
 	protected GameObject player;
@@ -21,6 +22,9 @@ public abstract class EnemyController : MonoBehaviour {
 
 	protected Collider2D col;
 
+	protected bool beingControlled;
+	protected bool firstFrame;
+
 	// Start is called before the first frame update
 	void Start() {
 		bloodTransform = transform.Find("Blood");
@@ -35,11 +39,46 @@ public abstract class EnemyController : MonoBehaviour {
 		player = GameObject.FindWithTag("Player");
 
 		col = GetComponent<Collider2D>();
+
+		Init();
 	}
 
 	// Update is called once per frame
 	void Update() {
 		if (dead) return;
+
+		UpdateEnemy();
+
+		if (beingControlled) {
+			//Look at mouse
+			Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+			Vector3 toMouse = mouseWorldPos - transform.position;
+
+			Quaternion rot = Quaternion.LookRotation(toMouse, Vector3.back);
+			rot.x = 0;
+			rot.y = 0;
+			transform.rotation = rot;
+
+			//Player movement
+			rb.velocity = (Input.GetAxis("Horizontal") * Vector2.right + Input.GetAxis("Vertical") * Vector2.up) * speed;
+
+			//Attack
+			if (Input.GetButtonDown("Attack")) {
+				Attack();
+			} else if (Input.GetButtonUp("Attack")) {
+				StopAttack();
+			}
+
+			//Exit body
+			if (Input.GetButtonDown("Enemy Control") && !firstFrame) {
+				KillInside();
+			}
+
+			firstFrame = false;
+
+			return;
+		}
 
 		if (hasTarget) {
 			Vector3 move = target.transform.position - transform.position;
@@ -70,6 +109,10 @@ public abstract class EnemyController : MonoBehaviour {
 		}
 	}
 
+	protected abstract void Init();
+
+	protected abstract void UpdateEnemy();
+
 	protected abstract void NoticePlayer();
 
 	protected abstract void HitTarget();
@@ -77,6 +120,12 @@ public abstract class EnemyController : MonoBehaviour {
 	protected abstract void AwayFromTarget();
 
 	protected abstract void CloseToTarget();
+
+	protected abstract void Attack();
+
+	protected abstract void StopAttack();
+
+	protected abstract void TakenOver();
 
 	IEnumerator StopBlood(float time) {
 		yield return new WaitForSeconds(time);
@@ -98,6 +147,11 @@ public abstract class EnemyController : MonoBehaviour {
 		blood.Play();
 		dead = true;
 		StartCoroutine(StopBlood(0.05f));
+
+		if (!beingControlled) return;
+
+		beingControlled = false;
+		player.GetComponent<PlayerController>().LoseControl();
 	}
 
 	public void Kill() {
@@ -106,6 +160,11 @@ public abstract class EnemyController : MonoBehaviour {
 		blood.Play();
 		dead = true;
 		StartCoroutine(StopBlood(0.05f));
+
+		if (!beingControlled) return;
+
+		beingControlled = false;
+		player.GetComponent<PlayerController>().LoseControl();
 	}
 
 	public void KillInside() {
@@ -115,5 +174,18 @@ public abstract class EnemyController : MonoBehaviour {
 		dead = true;
 		StartCoroutine(StopInsideBlood(0.1f));
 		transform.Find("Sprite").gameObject.SetActive(false);
+
+		if (!beingControlled) return;
+
+		beingControlled = false;
+		player.GetComponent<PlayerController>().LoseControl();
+	}
+
+	internal void TakeOver() {
+		beingControlled = true;
+		firstFrame = true;
+
+		gameObject.tag = "Player";
+		gameObject.layer = LayerMask.NameToLayer("Player");
 	}
 }

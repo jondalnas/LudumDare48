@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour {
 
 	private Animator anim;
 
+	private bool controllingEnemy;
+
 	void Start() {
 		rb = GetComponent<Rigidbody2D>();
 		scytheLocation = transform.Find("Sprite").Find("Player Arm").Find("Scythe location");
@@ -35,10 +37,13 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
+		if (controllingEnemy) return;
+
 		//Look at mouse
 		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		mouseColliderTransform.position = mouseWorldPos;
 
-		 if (scytheCooldownTimer < scytheCooldown * 0.7f) {
+		if (scytheCooldownTimer < scytheCooldown * 0.7f) {
 			lockedRot = transform.rotation;
 		} else if (scytheCooldownTimer < scytheCooldown) { //When cooldown is 70% done
 			Vector3 toMouse = mouseWorldPos - transform.position;
@@ -78,9 +83,28 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		//Teleport
-		mouseColliderTransform.position = mouseWorldPos;
+		//Taking over enemies
+		if (Input.GetButtonDown("Enemy Control")) {
+			Collider2D[] cols = new Collider2D[4];
+			int colNum;
+			if ((colNum = mouseCollider.OverlapCollider(enemyContactFilter, cols)) != 0) {
+				float dist = float.PositiveInfinity;
+				int index = -1;
+				for (int i = 0; i < colNum; i++) {
+					float currDist = (cols[i].transform.position - transform.position).sqrMagnitude;
+					if (currDist < dist) {
+						dist = currDist;
+						index = i;
+					}
+				}
 
+				controllingEnemy = true;
+				Camera.main.GetComponent<CameraController>().SetTarget(cols[index].transform);
+				cols[index].GetComponent<EnemyController>().TakeOver();
+			}
+		}
+
+		//Teleport
 		if (Input.GetButtonDown("Teleport")) {
 			Collider2D[] cols = new Collider2D[4];
 			int colNum;
@@ -102,6 +126,11 @@ public class PlayerController : MonoBehaviour {
 
 		//Handle scythe location
 		scythe.position = scytheLocation.position;
+	}
+
+	public void LoseControl() {
+		controllingEnemy = false;
+		Camera.main.GetComponent<CameraController>().SetTarget(transform);
 	}
 
 	public void Kill() {
