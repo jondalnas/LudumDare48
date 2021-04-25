@@ -1,8 +1,8 @@
 Grim Reaper infiltration enemy base:
-	Taking over enemies
-	Enemies can kill eachother
-	Small range teleport behind person
-	Stopping time when dying
+	-Taking over enemies
+	-Enemies can kill eachother
+	-Small range teleport behind person
+	-Stopping time when dying
 	Summon ability
 		Dog dragging peaple to hell
 	Using scythe as boomerang
@@ -18,11 +18,11 @@ Grim Reaper infiltration enemy base:
 		80's
 	
 	enemies:
-		Pistol
+		-Pistol
 		Dog
 		Dog partol
 		Machinegun
-		Filler brawler
+		-Filler brawler
 		Strong pistol (can take more hits and looses libs every time)
 		Final dood
 		

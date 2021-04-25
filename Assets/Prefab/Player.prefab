@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 517734657231309382}
   - component: {fileID: 8988354464679256959}
   - component: {fileID: 1263147602359308127}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Scythe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5518375834487328888}
   - component: {fileID: 3248865880690174070}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mouse collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1624848911152880007}
   - component: {fileID: 1624848911152880000}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 1624848911298835227}
   - component: {fileID: 1624848911298835221}
   - component: {fileID: 173468842}
+
   - component: {fileID: 1926902857338671811}
   m_Layer: 0
   m_Name: Player
@@ -311,7 +312,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf79431d8ae936e4da5e69f2320efa15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 250
+  inputVelocity: {x: 0, y: 0}
+  teleportCooldown: 4
 --- !u!95 &173468842
 Animator:
   serializedVersion: 3
@@ -367,7 +370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3689120584136587202}
   - component: {fileID: 3357257502759961789}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +453,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9063156889787090054}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Scythe location
   m_TagString: Untagged
   m_Icon: {fileID: 0}
