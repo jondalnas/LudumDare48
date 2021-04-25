@@ -127,6 +127,8 @@ public abstract class EnemyController : MonoBehaviour {
 
 	protected abstract void TakenOver();
 
+	protected abstract void PlayerAvoidedAttack();
+
 	IEnumerator StopBlood(float time) {
 		yield return new WaitForSeconds(time);
 

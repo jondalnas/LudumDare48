@@ -5071,11 +5071,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdb169e433c91684aa6e0ba3d73a9cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   speed: 5
   minDist: 0.5
   closeDist: 5
   pistolCooldown: 0.25
+  bullet: {fileID: 2744536441486021458, guid: 1364661f0ff4b1849add234081fada32, type: 3}
+  bulletDistance: 1
 --- !u!95 &348068390022300332
 Animator:
   serializedVersion: 3

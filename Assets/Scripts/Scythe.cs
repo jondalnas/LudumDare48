@@ -11,6 +11,7 @@ public class Scythe : MonoBehaviour {
 	private Collider2D col;
 	private ContactFilter2D hitContactFilter;
 	private bool returning;
+	private float lastDist;
 
 	public float maxDistFromPlayer = 10;
 
@@ -53,11 +54,13 @@ public class Scythe : MonoBehaviour {
 		if (returning) {
 			dir = toPlayer / dist;
 
-			if (dist < 0.1f) {
+			if (dist < 0.5f) {
 				player.GetComponent<PlayerController>().ScytheReturned();
 				Destroy(gameObject);
 			}
 		}
+
+		lastDist = dist;
 	}
 
 	private void Return() {

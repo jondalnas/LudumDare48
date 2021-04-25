@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
 	private Rigidbody2D rb;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour {
 	private Animator anim;
 
 	private float timeScaleTarget = 1;
+	private List<GameObject> killers = new List<GameObject>();
 
 	private bool controllingEnemy;
 
@@ -148,7 +150,15 @@ public class PlayerController : MonoBehaviour {
 				transform.position = cols[index].transform.position;
 				cols[index].GetComponent<EnemyController>().KillInside();
 
-				if (timeScaleTarget != 1) timeScaleTarget = 1;
+				if (timeScaleTarget != 1) {
+					timeScaleTarget = 1;
+
+					foreach (GameObject killer in killers) {
+						killer.SendMessage("PlayerAvoidedAttack");
+					}
+
+					killers.Clear();
+				}
 			}
 		}
 
@@ -176,9 +186,11 @@ public class PlayerController : MonoBehaviour {
 		Camera.main.GetComponent<CameraController>().SetTarget(transform);
 	}
 
-	public void Kill() {
+	public void Kill(GameObject killer) {
 		if (teleportTimer < 0) {
 			//Final chance
+
+			killers.Add(killer);
 
 			if (timeScaleTarget == 0) return;
 
