@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour {
 
 	private bool controllingEnemy;
 
+	private Collider2D winCol;
+	private Collider2D playerCol;
+
 	void Start() {
 		rb = GetComponent<Rigidbody2D>();
 		scytheLocation = transform.Find("Sprite").Find("Player Arm").Find("Scythe location");
@@ -39,6 +42,9 @@ public class PlayerController : MonoBehaviour {
 			useLayerMask = true,
 			layerMask = LayerMask.GetMask("Enemy")
 		};
+
+		winCol = GameObject.Find("Win").GetComponent<Collider2D>();
+		playerCol = GetComponent<Collider2D>();
 	}
 
 	void Update() {
@@ -50,6 +56,11 @@ public class PlayerController : MonoBehaviour {
 		if (controllingEnemy) return;
 
 		inputVelocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+		//Check if player has met victory conditions
+		if (winCol.IsTouching(playerCol)) {
+			GameObject.Find("-GAME LOOP-").GetComponent<GameLoop>().NextLevel();
+		}
 
 		//Look at mouse
 		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

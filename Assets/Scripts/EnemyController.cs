@@ -109,6 +109,8 @@ public abstract class EnemyController : MonoBehaviour {
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, toPlayer, toPlayer.magnitude, LayerMask.GetMask("Level"));
 			if (!hit) {
 				playerNoticed = true;
+
+				GameObject.Find("-GAME LOOP-").SendMessage("EnemySeen");
 			}
 		}
 	}
@@ -153,6 +155,9 @@ public abstract class EnemyController : MonoBehaviour {
 
 	public void Kill() {
 		if (dead) return;
+
+		if (playerNoticed)
+			GameObject.Find("-GAME LOOP-").SendMessage("EnemyDead");
 
 		blood.Play();
 		dead = true;
