@@ -10,6 +10,15 @@ public abstract class EnemyController : MonoBehaviour {
 	private ParticleSystem insideBlood;
 	private Transform bloodTransform;
 	private bool dead;
+	public Sprite shotSprite;
+	public Sprite decapSprite;
+	private SpriteRenderer sr;
+
+	public enum DeathStyle {
+		DECAP,
+		SHOT,
+		EXPLOSION
+	}
 
 	protected Rigidbody2D rb;
 	public float speed;
@@ -34,6 +43,7 @@ public abstract class EnemyController : MonoBehaviour {
 		insideBlood = transform.Find("Inside Blood").GetComponent<ParticleSystem>();
 		blood.Stop();
 		insideBlood.Stop();
+		sr = GetComponentInChildren<SpriteRenderer>();
 
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
@@ -76,7 +86,7 @@ public abstract class EnemyController : MonoBehaviour {
 
 			//Exit body
 			if (Input.GetButtonDown("Enemy Control") && !firstFrame) {
-				KillInside();
+				KillInside(DeathStyle.EXPLOSION);
 			}
 
 			firstFrame = false;
@@ -145,19 +155,41 @@ public abstract class EnemyController : MonoBehaviour {
 		insideBlood.Pause();
 	}
 
-	public void Kill(Vector2 dir) {
+	public void Kill(Vector2 dir, DeathStyle style) {
 		if (dead) return;
 
-		bloodTransform.rotation = Quaternion.Euler(Mathf.Atan2(dir.y, dir.x), 90, 0);
+		transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90);
 
-		Kill();
+		Kill(style);
 	}
 
-	public void Kill() {
+	private void Kill(DeathStyle style) {
 		if (dead) return;
 
 		if (playerNoticed)
 			GameObject.Find("-GAME LOOP-").SendMessage("EnemyDead");
+
+		foreach (SpriteRenderer renderer in GetComponentsInChildren<SpriteRenderer>()) {
+			renderer.enabled = false;
+		}
+
+		sr.enabled = true;
+
+		switch (style) {
+			case DeathStyle.DECAP:
+				sr.sprite = decapSprite;
+				break;
+
+			case DeathStyle.SHOT:
+				sr.sprite = shotSprite;
+				break;
+
+			case DeathStyle.EXPLOSION:
+				sr.enabled = false;
+				break;
+		}
+
+		sr.transform.Rotate(0, 0, 180);
 
 		blood.Play();
 		dead = true;
@@ -175,12 +207,12 @@ public abstract class EnemyController : MonoBehaviour {
 		player.GetComponent<PlayerController>().LoseControl();
 	}
 
-	public void KillInside() {
+	public void KillInside(DeathStyle style) {
 		if (dead) return;
 
 		insideBlood.Play();
 		StartCoroutine(StopInsideBlood(3f));
-		Kill();
+		Kill(style);
 		blood.Stop();
 	}
 

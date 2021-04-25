@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour {
 			Collider2D[] cols = new Collider2D[1];
 			if (scytheCollider.OverlapCollider(enemyContactFilter, cols) != 0) {
 				if (cols[0].gameObject.CompareTag("Enemy")) {
-					cols[0].gameObject.GetComponent<EnemyController>().Kill();
+					cols[0].gameObject.GetComponent<EnemyController>().Kill(cols[0].transform.position - transform.position, EnemyController.DeathStyle.DECAP);
 				}
 			}
 		}
@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour {
 				teleportTimer = teleportCooldown;
 
 				transform.position = cols[index].transform.position;
-				cols[index].GetComponent<EnemyController>().KillInside();
+				cols[index].GetComponent<EnemyController>().KillInside(EnemyController.DeathStyle.EXPLOSION);
 
 				if (timeScaleTarget != 1) timeScaleTarget = 1;
 			}

@@ -44,7 +44,7 @@ public class Pistol : EnemyController {
 			if (hits[0].transform.CompareTag("Player")) {
 				hits[0].transform.GetComponent<PlayerController>().Kill();
 			} else if (hits[0].transform.CompareTag("Enemy")) {
-				hits[0].transform.GetComponent<EnemyController>().Kill(transform.up);
+				hits[0].transform.GetComponent<EnemyController>().Kill(transform.up, DeathStyle.SHOT);
 			} else {//Hits wall
 
 			}

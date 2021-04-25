@@ -20,7 +20,7 @@ public class Brawler : EnemyController {
 
 		Collider2D[] cols = new Collider2D[1];
 		if (hitCol.OverlapCollider(contactFilter, cols) != 0) {
-			cols[0].GetComponent<EnemyController>().Kill(cols[0].transform.position - transform.position);
+			cols[0].GetComponent<EnemyController>().Kill(cols[0].transform.position - transform.position, DeathStyle.SHOT);
 		}
 	}
 

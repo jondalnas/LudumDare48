@@ -196,7 +196,7 @@ TextureImporter:
     second: Spritemap_63
   - first:
       213: -3875268190921908321
-    second: Spritemap_64
+    second: Brawler shot
   - first:
       213: 7899325444461006879
     second: Muzzle Flash
@@ -292,10 +292,10 @@ TextureImporter:
     second: Spritemap_95
   - first:
       213: -7925860256989756789
-    second: Spritemap_96
+    second: Brawler decap
   - first:
       213: 126033285122876555
-    second: Spritemap_97
+    second: Pistol shot
   - first:
       213: 2281693081000277311
     second: Spritemap_98
@@ -388,10 +388,10 @@ TextureImporter:
     second: Spritemap_127
   - first:
       213: -8904619307204857321
-    second: Spritemap_128
+    second: Brawler head
   - first:
       213: -7709384579946245024
-    second: Spritemap_129
+    second: Pistol head
   - first:
       213: 670202808766391510
     second: Spritemap_130
@@ -439,7 +439,7 @@ TextureImporter:
     second: Spritemap_144
   - first:
       213: 3916042808583375364
-    second: Spritemap_145
+    second: Pistol decap
   - first:
       213: -8481069692151062728
     second: Spritemap_146
@@ -2215,13 +2215,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_64
+      name: Brawler shot
       rect:
         serializedVersion: 2
-        x: 0
-        y: 176
-        width: 16
-        height: 16
+        x: 1
+        y: 163
+        width: 14
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2551,27 +2551,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Blood
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fe87ebf109ad05260800000000000000
-      internalID: 7084402526396512495
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Bullet
       rect:
         serializedVersion: 2
@@ -2887,13 +2866,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_96
+      name: Brawler decap
       rect:
         serializedVersion: 2
-        x: 0
-        y: 144
-        width: 16
-        height: 16
+        x: 1
+        y: 131
+        width: 14
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2908,13 +2887,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_97
+      name: Pistol shot
       rect:
         serializedVersion: 2
-        x: 16
-        y: 144
-        width: 16
-        height: 16
+        x: 17
+        y: 131
+        width: 14
+        height: 26
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3223,48 +3202,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_112
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1e17516968afb710800000000000000
-      internalID: 1711271553982209562
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spritemap_113
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 128
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c77d7233782525140800000000000000
-      internalID: 4706915301187901308
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Spritemap_114
       rect:
         serializedVersion: 2
@@ -3559,15 +3496,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_128
+      name: Brawler head
       rect:
         serializedVersion: 2
-        x: 0
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 4
+        y: 117
+        width: 7
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: -0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -3580,15 +3517,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_129
+      name: Pistol head
       rect:
         serializedVersion: 2
-        x: 16
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 21
+        y: 118
+        width: 6
+        height: 6
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -3898,10 +3835,10 @@ TextureImporter:
       name: Spritemap_144
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 96
-        width: 16
-        height: 16
+        width: 15
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3916,13 +3853,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_145
+      name: Pistol decap
       rect:
         serializedVersion: 2
-        x: 16
-        y: 96
-        width: 16
-        height: 16
+        x: 17
+        y: 83
+        width: 14
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4247,27 +4184,6 @@ TextureImporter:
       bones: []
       spriteID: dde0c7d8a0929c2d0800000000000000
       internalID: -3258027730125713699
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spritemap_161
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 168d7a2c591eaa6b0800000000000000
-      internalID: -5284163179433699231
       vertices: []
       indices: 
       edges: []

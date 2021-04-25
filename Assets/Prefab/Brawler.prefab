@@ -9794,6 +9794,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c802c4ceabfe02a4f9c08e81060803de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shotSprite: {fileID: -3875268190921908321, guid: a55b4a0c4b8ed8a45ad003a0d02dbefb, type: 3}
+  decapSprite: {fileID: -7925860256989756789, guid: a55b4a0c4b8ed8a45ad003a0d02dbefb, type: 3}
   speed: 5
   minDist: 0.5
   closeDist: 1.2
