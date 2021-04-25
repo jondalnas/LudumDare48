@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb638f86b43c4d742ab72c4c13c1e414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1288355388}
+  target: {fileID: 1288355392}
   cameraMouseFollow: 0.01
   cameraTargetFollow: 0.1
 --- !u!20 &519420031
@@ -407,6 +407,11 @@ PrefabInstance:
 --- !u!1 &1288355388 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1624848911298835226, guid: 40666b6be6f28924ca368e91021a525a, type: 3}
+  m_PrefabInstance: {fileID: 1026231446}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1288355392 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1624848911298835220, guid: 40666b6be6f28924ca368e91021a525a, type: 3}
   m_PrefabInstance: {fileID: 1026231446}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1837691207
@@ -941,14 +946,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1238413480498586191, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: m_Name
-      value: Brawler arm
-      objectReference: {fileID: 0}
-    - target: {fileID: 3646977176157295046, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 5648123547139469320, guid: a55b4a0c4b8ed8a45ad003a0d02dbefb, type: 3}
     - target: {fileID: 5026341296300849250, guid: 35533591a67188e409c2c25e410e0024, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -996,22 +993,6 @@ PrefabInstance:
     - target: {fileID: 5026341296300849251, guid: 35533591a67188e409c2c25e410e0024, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5026341297409950250, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 1501942216206789890, guid: a55b4a0c4b8ed8a45ad003a0d02dbefb, type: 3}
-    - target: {fileID: 6116572331691819241, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 5648123547139469320, guid: a55b4a0c4b8ed8a45ad003a0d02dbefb, type: 3}
-    - target: {fileID: 6268035856748526371, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1288355388}
-    - target: {fileID: 6800959693082983277, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: m_Name
-      value: Brawler arm (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35533591a67188e409c2c25e410e0024, type: 3}

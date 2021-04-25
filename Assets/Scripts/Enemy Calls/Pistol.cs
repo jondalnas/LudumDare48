@@ -4,10 +4,11 @@ public class Pistol : EnemyController {
 	public float pistolCooldown = 0.25f;
 	private float timer;
 
+	override protected void Init() { }
+
 	override protected void NoticePlayer() {
 		hasTarget = true;
 		target = player;
-
 	}
 
 	override protected void HitTarget() { }
@@ -33,6 +34,10 @@ public class Pistol : EnemyController {
 		}
 	}
 
+	override protected void Attack() {
+		anim.SetTrigger("Shoot");
+	}
+
 	public void Shoot() {
 		RaycastHit2D[] hits = new RaycastHit2D[1];
 		if (col.Raycast(transform.up, hits) != 0) {
@@ -45,4 +50,11 @@ public class Pistol : EnemyController {
 			}
 		}
 	}
+
+	protected override void TakenOver() {
+		anim.SetBool("Gun", true);
+	}
+
+	protected override void StopAttack() { }
+	protected override void UpdateEnemy() { }
 }

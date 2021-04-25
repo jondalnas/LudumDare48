@@ -1,6 +1,29 @@
 using UnityEngine;
 
 public class Brawler : EnemyController {
+	protected bool attacking;
+	protected Collider2D hitCol;
+
+	private ContactFilter2D contactFilter;
+
+	override protected void Init() {
+		hitCol = transform.Find("Hit collider").GetComponent<Collider2D>();
+
+		contactFilter = new ContactFilter2D {
+			useLayerMask = true,
+			layerMask = LayerMask.GetMask(new string[] { "Enemy" })
+		};
+	}
+
+	protected override void UpdateEnemy() {
+		if (!attacking) return;
+
+		Collider2D[] cols = new Collider2D[1];
+		if (hitCol.OverlapCollider(contactFilter, cols) != 0) {
+			cols[0].GetComponent<EnemyController>().Kill(cols[0].transform.position - transform.position);
+		}
+	}
+
 	override protected void NoticePlayer() {
 		hasTarget = true;
 		target = player;
@@ -31,4 +54,18 @@ public class Brawler : EnemyController {
 			anim.SetBool("Run", true);
 		}
 	}
+
+	protected override void Attack() {
+		attacking = true;
+
+		anim.SetBool("Punch", true);
+	}
+
+	protected override void StopAttack() {
+		attacking = false;
+
+		anim.SetBool("Punch", false);
+	}
+
+	protected override void TakenOver() { }
 }
