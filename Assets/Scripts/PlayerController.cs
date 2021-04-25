@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour {
 
 	private float timeScaleTarget = 1;
 
+	private bool controllingEnemy;
+
 	void Start() {
 		rb = GetComponent<Rigidbody2D>();
 		scytheLocation = transform.Find("Sprite").Find("Player Arm").Find("Scythe location");
@@ -45,9 +47,13 @@ public class PlayerController : MonoBehaviour {
 		if (Time.timeScale < 0.05) Time.timeScale = 0;
 		if (Time.timeScale > 0.95) Time.timeScale = 1;
 
+		if (controllingEnemy) return;
+
 		inputVelocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
+		//Look at mouse
 		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		mouseColliderTransform.position = mouseWorldPos;
 
 		if (Time.timeScale < 0.1) goto timestop;
 
@@ -89,6 +95,27 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
+		//Taking over enemies
+		if (Input.GetButtonDown("Enemy Control")) {
+			Collider2D[] cols = new Collider2D[4];
+			int colNum;
+			if ((colNum = mouseCollider.OverlapCollider(enemyContactFilter, cols)) != 0) {
+				float dist = float.PositiveInfinity;
+				int index = -1;
+				for (int i = 0; i < colNum; i++) {
+					float currDist = (cols[i].transform.position - transform.position).sqrMagnitude;
+					if (currDist < dist) {
+						dist = currDist;
+						index = i;
+					}
+				}
+
+				controllingEnemy = true;
+				Camera.main.GetComponent<CameraController>().SetTarget(cols[index].transform);
+				cols[index].GetComponent<EnemyController>().TakeOver();
+			}
+		}
+
 		timestop:
 
 		//Teleport
@@ -121,10 +148,16 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate() {
 		//Player movement
-		rb.velocity = inputVelocity * speed * Time.fixedDeltaTime;
+		if (!controllingEnemy) rb.velocity = inputVelocity * speed * Time.fixedDeltaTime;
+		else rb.velocity = Vector3.zero;
 
 		//Handle scythe location
 		scythe.position = scytheLocation.position;
+	}
+
+	public void LoseControl() {
+		controllingEnemy = false;
+		Camera.main.GetComponent<CameraController>().SetTarget(transform);
 	}
 
 	public void Kill() {

@@ -1,6 +1,6 @@
 Grim Reaper infiltration enemy base:
-	Taking over enemies
-	Enemies can kill eachother
+	-Taking over enemies
+	-Enemies can kill eachother
 	-Small range teleport behind person
 	-Stopping time when dying
 	Summon ability
@@ -29,9 +29,6 @@ Grim Reaper infiltration enemy base:
 		
 		Holy molotov
 	
-	
-	Fixes:
-		Add max enemy rotational speed
 	
 	
 	Rewind time
