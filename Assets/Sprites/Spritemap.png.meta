@@ -298,7 +298,7 @@ TextureImporter:
     second: Pistol shot
   - first:
       213: 2281693081000277311
-    second: Spritemap_98
+    second: Machine shot
   - first:
       213: 8764372729690414718
     second: Spritemap_99
@@ -394,7 +394,7 @@ TextureImporter:
     second: Pistol head
   - first:
       213: 670202808766391510
-    second: Spritemap_130
+    second: Machine head
   - first:
       213: 4798337950510191525
     second: Spritemap_131
@@ -442,7 +442,7 @@ TextureImporter:
     second: Pistol decap
   - first:
       213: -8481069692151062728
-    second: Spritemap_146
+    second: Machine decap
   - first:
       213: -8810157034607676896
     second: Spritemap_147
@@ -1945,10 +1945,10 @@ TextureImporter:
       name: Big pistol arm
       rect:
         serializedVersion: 2
-        x: 48
-        y: 192
-        width: 16
-        height: 16
+        x: 55
+        y: 195
+        width: 3
+        height: 9
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2908,13 +2908,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_98
+      name: Machine shot
       rect:
         serializedVersion: 2
-        x: 32
-        y: 144
-        width: 16
-        height: 16
+        x: 33
+        y: 131
+        width: 14
+        height: 26
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3197,27 +3197,6 @@ TextureImporter:
       bones: []
       spriteID: cd0d3e5efd6442db0800000000000000
       internalID: -4817647773931024164
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spritemap_114
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 128
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 123c13d0a20d9b3d0800000000000000
-      internalID: -3190289981986716895
       vertices: []
       indices: 
       edges: []
@@ -3538,13 +3517,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_130
+      name: Machine head
       rect:
         serializedVersion: 2
-        x: 32
-        y: 112
-        width: 16
-        height: 16
+        x: 37
+        y: 118
+        width: 6
+        height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3874,13 +3853,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_146
+      name: Machine decap
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
-        width: 16
-        height: 16
+        x: 33
+        y: 83
+        width: 14
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4184,27 +4163,6 @@ TextureImporter:
       bones: []
       spriteID: dde0c7d8a0929c2d0800000000000000
       internalID: -3258027730125713699
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spritemap_162
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d1de34aab57fb850800000000000000
-      internalID: 6394959440369340886
       vertices: []
       indices: 
       edges: []

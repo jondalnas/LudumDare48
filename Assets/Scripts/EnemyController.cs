@@ -76,6 +76,11 @@ public abstract class EnemyController : MonoBehaviour {
 
 			//Player movement
 			rb.velocity = (Input.GetAxis("Horizontal") * Vector2.right + Input.GetAxis("Vertical") * Vector2.up) * speed;
+			if (rb.velocity.sqrMagnitude < 0.001) {
+				anim.SetBool("Run", false);
+			} else {
+				anim.SetBool("Run", true);
+			}
 
 			//Attack
 			if (Input.GetButtonDown("Attack")) {
@@ -168,6 +173,7 @@ public abstract class EnemyController : MonoBehaviour {
 
 		if (playerNoticed)
 			GameObject.Find("-GAME LOOP-").SendMessage("EnemyDead");
+		anim.enabled = false;
 
 		foreach (SpriteRenderer renderer in GetComponentsInChildren<SpriteRenderer>()) {
 			renderer.enabled = false;
