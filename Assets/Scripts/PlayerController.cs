@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour {
 		scythe.position = scytheLocation.position;
 	}
 
-	public void kill() {
+	public void Kill() {
 		Debug.Log("Dead");
 	}
 }

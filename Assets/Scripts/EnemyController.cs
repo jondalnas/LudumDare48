@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.Events;
 
 public abstract class EnemyController : MonoBehaviour {
-	public GameObject player;
+	protected GameObject player;
 
 	private ParticleSystem blood;
 	private ParticleSystem insideBlood;
@@ -19,6 +19,8 @@ public abstract class EnemyController : MonoBehaviour {
 	public float minDist = 0.5f;
 	public float closeDist = 3f;
 
+	protected Collider2D col;
+
 	// Start is called before the first frame update
 	void Start() {
 		bloodTransform = transform.Find("Blood");
@@ -29,6 +31,10 @@ public abstract class EnemyController : MonoBehaviour {
 
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
+
+		player = GameObject.FindWithTag("Player");
+
+		col = GetComponent<Collider2D>();
 	}
 
 	// Update is called once per frame

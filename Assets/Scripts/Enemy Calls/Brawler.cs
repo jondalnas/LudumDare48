@@ -8,7 +8,7 @@ public class Brawler : EnemyController {
 
 	override protected void HitTarget() {
 		if (target == player) {
-			player.GetComponent<PlayerController>().kill();
+			player.GetComponent<PlayerController>().Kill();
 			rb.velocity = Vector2.zero;
 		}
 	}

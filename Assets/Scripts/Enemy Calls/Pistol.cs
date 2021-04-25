@@ -3,19 +3,19 @@ using UnityEngine;
 public class Pistol : EnemyController {
 	public float pistolCooldown = 0.25f;
 	private float timer;
+
 	override protected void NoticePlayer() {
 		hasTarget = true;
 		target = player;
+
 	}
 
-	override protected void HitTarget() {
-		
-	}
+	override protected void HitTarget() { }
 
 	override protected void AwayFromTarget() {
 		anim.SetBool("Gun", false);
-		
 	}
+
 	override protected void CloseToTarget() {
 		Vector3 move = target.transform.position - transform.position;
 		Quaternion rot = Quaternion.LookRotation(move, Vector3.back);
@@ -29,6 +29,19 @@ public class Pistol : EnemyController {
 			if (pistolCooldown < timer) {
 				anim.SetTrigger("Shoot");
 				timer = 0;
+			}
+		}
+	}
+
+	public void Shoot() {
+		RaycastHit2D[] hits = new RaycastHit2D[1];
+		if (col.Raycast(transform.up, hits) != 0) {
+			if (hits[0].transform.CompareTag("Player")) {
+				hits[0].transform.GetComponent<PlayerController>().Kill();
+			} else if (hits[0].transform.CompareTag("Enemy")) {
+				hits[0].transform.GetComponent<EnemyController>().Kill(transform.up);
+			} else {//Hits wall
+
 			}
 		}
 	}
