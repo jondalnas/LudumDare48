@@ -25,6 +25,8 @@ public abstract class EnemyController : MonoBehaviour {
 	protected bool beingControlled;
 	protected bool firstFrame;
 
+	private Detail detail;
+
 	// Start is called before the first frame update
 	void Start() {
 		bloodTransform = transform.Find("Blood");
@@ -39,6 +41,8 @@ public abstract class EnemyController : MonoBehaviour {
 		player = GameObject.FindWithTag("Player");
 
 		col = GetComponent<Collider2D>();
+
+		detail = GameObject.Find("Detail").GetComponent<Detail>();
 
 		Init();
 	}
@@ -144,19 +148,7 @@ public abstract class EnemyController : MonoBehaviour {
 
 		bloodTransform.rotation = Quaternion.Euler(Mathf.Atan2(dir.y, dir.x), 90, 0);
 
-		blood.Play();
-		dead = true;
-		StartCoroutine(StopBlood(0.05f));
-
-		rb.simulated = false;
-		foreach (Collider2D col in GetComponentsInChildren<Collider2D>()) {
-			col.enabled = false;
-		}
-
-		if (!beingControlled) return;
-
-		beingControlled = false;
-		player.GetComponent<PlayerController>().LoseControl();
+		Kill();
 	}
 
 	public void Kill() {
@@ -164,37 +156,27 @@ public abstract class EnemyController : MonoBehaviour {
 
 		blood.Play();
 		dead = true;
-		StartCoroutine(StopBlood(0.05f));
+		StartCoroutine(StopBlood(3f));
 		rb.simulated = false;
 		foreach (Collider2D col in GetComponentsInChildren<Collider2D>()) {
 			col.enabled = false;
 		}
 
+		detail.ColorFromPos(Color.HSVToRGB(UnityEngine.Random.Range(0.0f, 1.0f), 1.0f, 1.0f), 40, transform.position);
+
 		if (!beingControlled) return;
 		
 		beingControlled = false;
 		player.GetComponent<PlayerController>().LoseControl();
-
-		
 	}
 
 	public void KillInside() {
 		if (dead) return;
 
 		insideBlood.Play();
-		dead = true;
-		StartCoroutine(StopInsideBlood(0.1f));
-		transform.Find("Sprite").gameObject.SetActive(false);
-
-		rb.simulated = false;
-		foreach (Collider2D col in GetComponentsInChildren<Collider2D>()) {
-			col.enabled = false;
-		}
-
-		if (!beingControlled) return;
-
-		beingControlled = false;
-		player.GetComponent<PlayerController>().LoseControl();
+		StartCoroutine(StopInsideBlood(3f));
+		Kill();
+		blood.Stop();
 	}
 
 	internal void TakeOver() {

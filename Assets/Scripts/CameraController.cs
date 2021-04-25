@@ -10,6 +10,8 @@ public class CameraController : MonoBehaviour {
 
 	void Start() {
 		blackAndWhiteMat = new Material(Shader.Find("Hidden/Black and White"));
+
+		transform.position = target.position;
 	}
 
 	void FixedUpdate() {
