@@ -874,12 +874,12 @@ TextureImporter:
       name: Player
       rect:
         serializedVersion: 2
-        x: 0
-        y: 240
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 2
+        y: 243
+        width: 12
+        height: 8
+      alignment: 9
+      pivot: {x: 0.5, y: 0.625}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -895,12 +895,12 @@ TextureImporter:
       name: Scythe
       rect:
         serializedVersion: 2
-        x: 16
+        x: 20
         y: 240
-        width: 16
+        width: 10
         height: 16
       alignment: 9
-      pivot: {x: 0.6875, y: 0.375}
+      pivot: {x: 0.7, y: 0.375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -916,12 +916,12 @@ TextureImporter:
       name: Player Arm
       rect:
         serializedVersion: 2
-        x: 32
-        y: 240
-        width: 16
-        height: 16
+        x: 39
+        y: 244
+        width: 2
+        height: 7
       alignment: 9
-      pivot: {x: 0.5, y: 0.3125}
+      pivot: {x: 0.5, y: 0.14285715}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1210,12 +1210,12 @@ TextureImporter:
       name: Brawler
       rect:
         serializedVersion: 2
-        x: 0
-        y: 224
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 2
+        y: 227
+        width: 12
+        height: 8
+      alignment: 9
+      pivot: {x: 0.5, y: 0.625}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1231,10 +1231,10 @@ TextureImporter:
       name: Pistol
       rect:
         serializedVersion: 2
-        x: 16
-        y: 224
-        width: 16
-        height: 16
+        x: 18
+        y: 229
+        width: 12
+        height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1252,10 +1252,10 @@ TextureImporter:
       name: Machinegun
       rect:
         serializedVersion: 2
-        x: 32
-        y: 224
-        width: 16
-        height: 16
+        x: 34
+        y: 229
+        width: 12
+        height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1274,11 +1274,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 224
+        y: 226
         width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 10
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1546,12 +1546,12 @@ TextureImporter:
       name: Brawler arm
       rect:
         serializedVersion: 2
-        x: 0
-        y: 208
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 7
+        y: 211
+        width: 2
+        height: 7
+      alignment: 9
+      pivot: {x: 0.5, y: 0.14285715}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1567,12 +1567,12 @@ TextureImporter:
       name: Pistol gun arm
       rect:
         serializedVersion: 2
-        x: 16
-        y: 208
-        width: 16
-        height: 16
+        x: 23
+        y: 211
+        width: 3
+        height: 10
       alignment: 9
-      pivot: {x: 0.5, y: 0.20269871}
+      pivot: {x: 0.33333334, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1588,12 +1588,12 @@ TextureImporter:
       name: Machinegun gun arm
       rect:
         serializedVersion: 2
-        x: 32
-        y: 208
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 39
+        y: 211
+        width: 4
+        height: 11
+      alignment: 9
+      pivot: {x: 0.25, y: 0.09090909}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1609,12 +1609,12 @@ TextureImporter:
       name: Big Pistol gun arm
       rect:
         serializedVersion: 2
-        x: 48
-        y: 208
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 55
+        y: 211
+        width: 3
+        height: 9
+      alignment: 9
+      pivot: {x: 0.5, y: 0.11111111}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1903,12 +1903,12 @@ TextureImporter:
       name: Pistol arm
       rect:
         serializedVersion: 2
-        x: 16
-        y: 192
-        width: 16
-        height: 16
+        x: 23
+        y: 195
+        width: 2
+        height: 7
       alignment: 9
-      pivot: {x: 0.5, y: 0.20823479}
+      pivot: {x: 0.5, y: 0.14285715}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1924,12 +1924,12 @@ TextureImporter:
       name: Machinegun arm
       rect:
         serializedVersion: 2
-        x: 32
-        y: 192
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 39
+        y: 195
+        width: 2
+        height: 7
+      alignment: 9
+      pivot: {x: 0.5, y: 0.14285715}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2239,12 +2239,12 @@ TextureImporter:
       name: Muzzle Flash
       rect:
         serializedVersion: 2
-        x: 16
-        y: 176
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 21
+        y: 182
+        width: 8
+        height: 9
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2575,10 +2575,10 @@ TextureImporter:
       name: Bullet
       rect:
         serializedVersion: 2
-        x: 16
-        y: 160
-        width: 16
-        height: 16
+        x: 17
+        y: 165
+        width: 12
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
