@@ -40,8 +40,6 @@ public class Pistol : EnemyController {
 
 	public void Shoot() {
 		RaycastHit2D[] hits = new RaycastHit2D[1];
-		Debug.Log(System.Convert.ToString(~((1 << LayerMask.NameToLayer("Ignore Raycast")) | (1 << LayerMask.NameToLayer("UI"))), 2));
-
 		if (col.Raycast(transform.up, hits, Mathf.Infinity, ~((1 << LayerMask.NameToLayer("Ignore Raycast")) | (1 << LayerMask.NameToLayer("UI")))) != 0) {
 			if (hits[0].transform.CompareTag("Player")) {
 				hits[0].transform.GetComponent<PlayerController>().Kill();

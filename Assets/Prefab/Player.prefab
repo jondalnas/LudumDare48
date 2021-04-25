@@ -314,6 +314,8 @@ MonoBehaviour:
   speed: 250
   inputVelocity: {x: 0, y: 0}
   teleportCooldown: 4
+  scythePrefab: {fileID: 2946563742416957432, guid: 5c93403479e7e3749971b0caf9cd48a3, type: 3}
+  scytheThrown: 0
 --- !u!95 &173468842
 Animator:
   serializedVersion: 3

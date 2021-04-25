@@ -24,11 +24,16 @@ public class PlayerController : MonoBehaviour {
 
 	private bool controllingEnemy;
 
+	public GameObject scythePrefab;
+	public bool scytheThrown;
+	private SpriteRenderer sr;
+
 	void Start() {
 		rb = GetComponent<Rigidbody2D>();
 		scytheLocation = transform.Find("Sprite").Find("Player Arm").Find("Scythe location");
 		scythe = transform.Find("Sprite").Find("Scythe");
 		scytheCollider = scythe.GetComponent<BoxCollider2D>();
+		sr = scythe.GetComponent<SpriteRenderer>();
 
 		mouseColliderTransform = transform.Find("Mouse collider");
 		mouseCollider = mouseColliderTransform.GetComponent<CircleCollider2D>();
@@ -80,17 +85,19 @@ public class PlayerController : MonoBehaviour {
 
 		//Swing scythe
 		scytheCooldownTimer += Time.deltaTime;
-		if (scytheCooldownTimer > scytheCooldown) {
-			if (Input.GetButtonDown("Attack")) {
-				anim.SetTrigger("Attack");
+		if (!scytheThrown) {
+			if (scytheCooldownTimer > scytheCooldown) {
+				if (Input.GetButtonDown("Attack")) {
+					anim.SetTrigger("Attack");
 
-				scytheCooldownTimer = 0;
-			}
-		} else { //Is swinging
-			Collider2D[] cols = new Collider2D[1];
-			if (scytheCollider.OverlapCollider(enemyContactFilter, cols) != 0) {
-				if (cols[0].gameObject.CompareTag("Enemy")) {
-					cols[0].gameObject.GetComponent<EnemyController>().Kill();
+					scytheCooldownTimer = 0;
+				}
+			} else { //Is swinging
+				Collider2D[] cols = new Collider2D[1];
+				if (scytheCollider.OverlapCollider(enemyContactFilter, cols) != 0) {
+					if (cols[0].gameObject.CompareTag("Enemy")) {
+						cols[0].gameObject.GetComponent<EnemyController>().Kill();
+					}
 				}
 			}
 		}
@@ -144,6 +151,15 @@ public class PlayerController : MonoBehaviour {
 				if (timeScaleTarget != 1) timeScaleTarget = 1;
 			}
 		}
+
+		//Throw scythe
+		if (Input.GetButtonDown("Throw") && !scytheThrown && scytheCooldownTimer > scytheCooldown) {
+			Instantiate(scythePrefab, scytheLocation.position, scythe.rotation).GetComponent<Scythe>().dir = transform.up;
+
+			sr.enabled = false;
+
+			scytheThrown = true;
+		}
 	}
 
 	void FixedUpdate() {
@@ -171,5 +187,11 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			//Kill player
 		}
+	}
+
+	public void ScytheReturned() {
+		scytheThrown = false;
+
+		sr.enabled = true;
 	}
 }
