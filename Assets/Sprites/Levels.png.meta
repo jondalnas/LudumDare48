@@ -25,31 +25,31 @@ TextureImporter:
     second: Grafiti 4
   - first:
       213: 5240983979688009797
-    second: Levels_7
+    second: Bookcase
   - first:
       213: -8253397970809480841
-    second: Levels_8
+    second: Tile
   - first:
       213: 5899008983209255585
-    second: Levels_9
+    second: TV
   - first:
       213: -3565563223689418230
-    second: Levels_10
+    second: TV Light
   - first:
       213: 8407395333194056842
-    second: Levels_11
+    second: Couch
   - first:
       213: -3984585504711263316
     second: Levels_12
   - first:
       213: 8376846895221894574
-    second: Levels_13
+    second: Toilet
   - first:
       213: 7625660134041518368
-    second: Levels_14
+    second: Bathroom Sink
   - first:
       213: 1507802683668932186
-    second: Levels_15
+    second: Bathtub
   - first:
       213: 5211141267167497221
     second: Window
@@ -91,7 +91,7 @@ TextureImporter:
     second: Levels_28
   - first:
       213: -3711532187405908921
-    second: Levels_29
+    second: Welcome mat
   - first:
       213: -8837724174410539218
     second: Levels_30
@@ -139,7 +139,7 @@ TextureImporter:
     second: Levels_44
   - first:
       213: -8299239579243949435
-    second: Levels_45
+    second: Stay out grafiti
   - first:
       213: -7893247714124607253
     second: Levels_46
@@ -1009,7 +1009,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_7
+      name: Bookcase
       rect:
         serializedVersion: 2
         x: 112
@@ -1030,7 +1030,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_8
+      name: Tile
       rect:
         serializedVersion: 2
         x: 128
@@ -1051,7 +1051,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_9
+      name: TV
       rect:
         serializedVersion: 2
         x: 144
@@ -1072,7 +1072,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_10
+      name: TV Light
       rect:
         serializedVersion: 2
         x: 160
@@ -1093,15 +1093,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_11
+      name: Couch
       rect:
         serializedVersion: 2
         x: 176
         y: 240
-        width: 16
+        width: 32
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1114,28 +1114,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_12
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 240
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cabb38e3898e3b8c0800000000000000
-      internalID: -3984585504711263316
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Levels_13
+      name: Toilet
       rect:
         serializedVersion: 2
         x: 208
@@ -1156,7 +1135,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_14
+      name: Bathroom Sink
       rect:
         serializedVersion: 2
         x: 224
@@ -1177,15 +1156,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_15
+      name: Bathtub
       rect:
         serializedVersion: 2
         x: 240
-        y: 240
+        y: 224
         width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.75}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1471,15 +1450,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_29
+      name: Welcome mat
       rect:
         serializedVersion: 2
         x: 208
         y: 224
-        width: 16
+        width: 32
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1487,48 +1466,6 @@ TextureImporter:
       bones: []
       spriteID: 7440e3dd32dfd7cc0800000000000000
       internalID: -3711532187405908921
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Levels_30
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 224
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e2f906900b81a5580800000000000000
-      internalID: -8837724174410539218
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Levels_31
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 224
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dee00d6ca5e775cf0800000000000000
-      internalID: -263603124830204179
       vertices: []
       indices: 
       edges: []
@@ -1807,15 +1744,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_45
+      name: Stay out grafiti
       rect:
         serializedVersion: 2
         x: 208
         y: 208
-        width: 16
+        width: 32
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1823,27 +1760,6 @@ TextureImporter:
       bones: []
       spriteID: 5825d4de29d23dc80800000000000000
       internalID: -8299239579243949435
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Levels_46
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 208
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be05073360d857290800000000000000
-      internalID: -7893247714124607253
       vertices: []
       indices: 
       edges: []
