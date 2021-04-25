@@ -4,10 +4,10 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -4329440586233989439
-    second: Floor
+    second: Floor1
   - first:
       213: 3483283174894770639
-    second: Wall
+    second: Wall1
   - first:
       213: -3073875581494082270
     second: Concrete
@@ -55,10 +55,10 @@ TextureImporter:
     second: Window
   - first:
       213: 1436874398258650327
-    second: Levels_17
+    second: Floor2
   - first:
       213: -7527930898644110015
-    second: Levels_18
+    second: Wall2
   - first:
       213: -7417772951989040711
     second: Levels_19
@@ -100,7 +100,7 @@ TextureImporter:
     second: Levels_31
   - first:
       213: -6200397265841470030
-    second: Levels_32
+    second: Void
   - first:
       213: 3766846560648414866
     second: Levels_33
@@ -862,7 +862,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Floor
+      name: Floor1
       rect:
         serializedVersion: 2
         x: 0
@@ -883,7 +883,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall
+      name: Wall1
       rect:
         serializedVersion: 2
         x: 16
@@ -1219,7 +1219,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_17
+      name: Floor2
       rect:
         serializedVersion: 2
         x: 16
@@ -1240,7 +1240,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_18
+      name: Wall2
       rect:
         serializedVersion: 2
         x: 32
@@ -1534,7 +1534,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_32
+      name: Void
       rect:
         serializedVersion: 2
         x: 0
