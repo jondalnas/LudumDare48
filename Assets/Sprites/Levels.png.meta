@@ -61,16 +61,16 @@ TextureImporter:
     second: Wall2
   - first:
       213: -7417772951989040711
-    second: Levels_19
+    second: Wall1 corner
   - first:
       213: 6200624698305375475
-    second: Levels_20
+    second: Wall1 T
   - first:
       213: -8595335644714021428
-    second: Levels_21
+    second: Wall1 plus
   - first:
       213: -8246113188726858256
-    second: Levels_22
+    second: Wall1 end
   - first:
       213: 9205851964297208176
     second: Levels_23
@@ -109,16 +109,16 @@ TextureImporter:
     second: Blocked door 2
   - first:
       213: -7933483196475000303
-    second: Levels_35
+    second: Wall2 corner
   - first:
       213: 4796343754584328551
-    second: Levels_36
+    second: Wall2 T
   - first:
       213: -963625300241846306
-    second: Levels_37
+    second: Wall2 plus
   - first:
       213: 1347703493435489157
-    second: Levels_38
+    second: Wall2 end
   - first:
       213: -4287262304190058162
     second: Levels_39
@@ -1240,7 +1240,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_19
+      name: Wall1 corner
       rect:
         serializedVersion: 2
         x: 48
@@ -1261,7 +1261,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_20
+      name: Wall1 T
       rect:
         serializedVersion: 2
         x: 64
@@ -1282,7 +1282,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_21
+      name: Wall1 plus
       rect:
         serializedVersion: 2
         x: 80
@@ -1303,7 +1303,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_22
+      name: Wall1 end
       rect:
         serializedVersion: 2
         x: 96
@@ -1513,7 +1513,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_35
+      name: Wall2 corner
       rect:
         serializedVersion: 2
         x: 48
@@ -1534,7 +1534,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_36
+      name: Wall2 T
       rect:
         serializedVersion: 2
         x: 64
@@ -1555,7 +1555,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_37
+      name: Wall2 plus
       rect:
         serializedVersion: 2
         x: 80
@@ -1576,7 +1576,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_38
+      name: Wall2 end
       rect:
         serializedVersion: 2
         x: 96
