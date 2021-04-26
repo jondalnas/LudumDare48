@@ -60,6 +60,10 @@ public class Replay : MonoBehaviour {
 			replayObjects.Add(e.GetComponent<EnemyController>());
 		}
 
+		foreach (DoorReplay d in (DoorReplay[])GameObject.FindObjectsOfType(typeof(DoorReplay))) {
+			replayObjects.Add(d);
+		}
+
 		IN_REPLAY = false;
 		replayIndex = 0;
 		totalFrames = 0;

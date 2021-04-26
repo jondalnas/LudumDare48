@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1192305023684357678}
   - component: {fileID: 1192305023684357679}
   - component: {fileID: 1192305023684357676}
+  - component: {fileID: -8073414163733674120}
   m_Layer: 3
   m_Name: Double door
   m_TagString: Untagged
@@ -147,3 +148,15 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: -150
     m_UpperAngle: 150
+--- !u!114 &-8073414163733674120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192305023684357677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42eed97e753e77e45a9ffaae5e4e3f65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
