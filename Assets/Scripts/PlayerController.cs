@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour, IReplayable {
 	private List<GameObject> killers = new List<GameObject>();
 
 	private bool controllingEnemy;
+	public Transform enemy;
 
 	private Collider2D winCol;
 	private Collider2D playerCol;
@@ -137,6 +138,7 @@ public class PlayerController : MonoBehaviour, IReplayable {
 				}
 
 				controllingEnemy = true;
+				enemy = cols[index].transform;
 				Camera.main.GetComponent<CameraController>().SetTarget(cols[index].transform);
 				cols[index].GetComponent<EnemyController>().TakeOver();
 			}
@@ -203,6 +205,7 @@ public class PlayerController : MonoBehaviour, IReplayable {
 
 	public void LoseControl() {
 		controllingEnemy = false;
+		enemy = null;
 		Camera.main.GetComponent<CameraController>().SetTarget(transform);
 	}
 

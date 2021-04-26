@@ -11,10 +11,7 @@ public class Pistol : EnemyController {
 
 	override protected void Init() { }
 
-	override protected void NoticePlayer() {
-		hasTarget = true;
-		target = player.transform;
-	}
+	override protected void NoticePlayer() { }
 
 	override protected void HitTarget() { }
 
@@ -23,6 +20,8 @@ public class Pistol : EnemyController {
 	}
 
 	override protected void CloseToTarget() {
+		move = Vector3.zero;
+
 		if (target == player.transform) {
 			anim.SetBool("Gun", true);
 			rb.velocity = Vector2.zero;

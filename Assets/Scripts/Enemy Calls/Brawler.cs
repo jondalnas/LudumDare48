@@ -24,15 +24,14 @@ public class Brawler : EnemyController {
 		}
 	}
 
-	override protected void NoticePlayer() {
-		hasTarget = true;
-		target = player.transform;
-	}
+	override protected void NoticePlayer() { }
 
 	override protected void HitTarget() {
 		if (target == player.transform) {
 			player.GetComponent<PlayerController>().Kill(gameObject);
 			rb.velocity = Vector2.zero;
+		} else if (target.CompareTag("Player")) { //Must be player controlled enemy
+			target.GetComponent<EnemyController>().Kill(transform.position - target.position, DeathStyle.SHOT);
 		}
 	}
 

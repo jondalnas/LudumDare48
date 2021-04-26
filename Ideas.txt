@@ -24,6 +24,7 @@ Grim Reaper infiltration enemy base:
 		Ranking based on aggression
 		Summon ability
 			Dog dragging peaple to hell
+		Throwinf scythe looks wrong
 	
 	
 	Game rules:

@@ -79,10 +79,9 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 	bool lastTarget = false;
 	private void FixedUpdate() {
 		if (hasTarget && !lastTarget) {
-			lastTarget = true;
-
 			rb.bodyType = RigidbodyType2D.Dynamic;
 		}
+		lastTarget = hasTarget;
 
 		if (beingControlled) {
 			rb.velocity = playerVel;
@@ -140,6 +139,20 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 		}
 
 		if (hasTarget) {
+			EnemyController ec;
+			if (ec = target.GetComponent<EnemyController>()) {
+				if (ec.dead) {
+					hasTarget = patrolPoints.Length != 0;
+					if (hasTarget) {
+						target = patrolPoints[0];
+					} else {
+						rb.bodyType = RigidbodyType2D.Static;
+					}
+
+					playerNoticed = false;
+				}
+			}
+
 			move = target.position - transform.position;
 			float dist = move.magnitude;
 			Quaternion rot = Quaternion.LookRotation(move, Vector3.back);
@@ -149,7 +162,6 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 			if (dist < closeDist) {
 				if (target.CompareTag("Player")) {
 					CloseToTarget();
-					move = Vector3.zero;
 				} else {
 					move /= dist;
 					if (dist < minDist) {
@@ -173,14 +185,30 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 		}
 
 		if (playerNoticed) {
+			hasTarget = true;
+
 			NoticePlayer();
 		} else {
 			Vector3 toPlayer = player.transform.position - transform.position;
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, toPlayer, toPlayer.magnitude, LayerMask.GetMask("Level"));
 			if (!hit) {
 				playerNoticed = true;
+				target = player.transform;
 
 				GameObject.Find("-GAME LOOP-").SendMessage("EnemySeen");
+			} else {
+				Transform enemy;
+				if (enemy = player.transform.GetComponent<PlayerController>().enemy) {
+					toPlayer = enemy.position - transform.position;
+					hit = Physics2D.Raycast(transform.position, toPlayer, toPlayer.magnitude, LayerMask.GetMask("Level"));
+
+					if (!hit) {
+						playerNoticed = true;
+						target = enemy.transform;
+
+						GameObject.Find("-GAME LOOP-").SendMessage("EnemySeen");
+					}
+				}
 			}
 		}
 	}
