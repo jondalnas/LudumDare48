@@ -205,7 +205,7 @@ TextureImporter:
     second: Spritemap_66
   - first:
       213: 7501767438964987076
-    second: Spritemap_67
+    second: Big dead
   - first:
       213: -1064245790447497874
     second: Spritemap_68
@@ -1609,10 +1609,10 @@ TextureImporter:
       name: Big Pistol gun arm
       rect:
         serializedVersion: 2
-        x: 55
+        x: 54
         y: 211
-        width: 3
-        height: 9
+        width: 4
+        height: 12
       alignment: 9
       pivot: {x: 0.5, y: 0.11111111}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1949,8 +1949,8 @@ TextureImporter:
         y: 195
         width: 3
         height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.14444444}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2278,13 +2278,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spritemap_67
+      name: Big dead
       rect:
         serializedVersion: 2
         x: 48
-        y: 176
+        y: 160
         width: 16
-        height: 16
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2588,27 +2588,6 @@ TextureImporter:
       bones: []
       spriteID: 98fb8a523b0468b60800000000000000
       internalID: 7747951347112656777
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spritemap_83
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2796b9c40ff8262c0800000000000000
-      internalID: -4439828020393711246
       vertices: []
       indices: 
       edges: []

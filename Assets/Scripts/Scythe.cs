@@ -40,6 +40,10 @@ public class Scythe : MonoBehaviour {
 		if (col.OverlapCollider(hitContactFilter, cols) != 0) {
 			if (cols[0].CompareTag("Enemy")) {
 				cols[0].GetComponent<EnemyController>().Kill(cols[0].transform.position - transform.position, EnemyController.DeathStyle.DECAP);
+
+				if (cols[0].GetComponent<Boss>()) {
+					Return();
+				}
 			} else {
 				Return();
 			}

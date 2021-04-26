@@ -251,7 +251,7 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 		insideBlood.Pause();
 	}
 
-	public void Kill(Vector2 dir, DeathStyle style) {
+	public virtual void Kill(Vector2 dir, DeathStyle style) {
 		if (dead) return;
 
 		killDir = dir;
@@ -261,7 +261,7 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 		Kill(style);
 	}
 
-	private void Kill(DeathStyle style) {
+	protected void Kill(DeathStyle style) {
 		this.style = style;
 
 		if (isAwake)

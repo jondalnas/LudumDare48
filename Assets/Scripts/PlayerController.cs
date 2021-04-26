@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour, IReplayable {
 	private GameObject attackingScythe;
 	public bool scytheThrown;
 	private SpriteRenderer sr;
+	public bool knockedBack;
 
 	void Start() {
 		rb = GetComponent<Rigidbody2D>();
@@ -193,6 +194,7 @@ public class PlayerController : MonoBehaviour, IReplayable {
 	}
 
 	void FixedUpdate() {
+		if (knockedBack) return;
 		if (Replay.IN_REPLAY) return;
 
 		//Player movement
