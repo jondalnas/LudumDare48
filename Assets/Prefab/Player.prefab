@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 517734657231309382}
   - component: {fileID: 8988354464679256959}
   - component: {fileID: 1263147602359308127}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: Scythe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5518375834487328888}
   - component: {fileID: 3248865880690174070}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: Mouse collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,6 +315,8 @@ MonoBehaviour:
   speed: 250
   inputVelocity: {x: 0, y: 0}
   teleportCooldown: 4
+  scythePrefab: {fileID: 2946563742416957432, guid: 5c93403479e7e3749971b0caf9cd48a3, type: 3}
+  scytheThrown: 0
 --- !u!95 &173468842
 Animator:
   serializedVersion: 3
