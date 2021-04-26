@@ -6,10 +6,12 @@ public class CameraController : MonoBehaviour {
 	public float cameraMouseFollow = 0.01f;
 	public float cameraTargetFollow = 5f;
 	public Material blackAndWhiteMat;
+	public Material grain;
 	private float blend;
 
 	void Start() {
 		blackAndWhiteMat = new Material(Shader.Find("Hidden/Black and White"));
+		grain = new Material(Shader.Find("Hidden/Grain"));
 
 		transform.position = target.position;
 	}
@@ -28,7 +30,7 @@ public class CameraController : MonoBehaviour {
 		blend = (blend * 19.0f + Time.timeScale) * 0.05f;
 
 		if (Time.timeScale == 1) {
-			Graphics.Blit(source, destination);
+			Graphics.Blit(source, destination, grain);
 			return;
 		}
 

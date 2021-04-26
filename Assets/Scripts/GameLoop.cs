@@ -29,4 +29,8 @@ public class GameLoop : MonoBehaviour {
 	public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
 		Replay.ResetReplay();
 	}
+
+	public void CloseGame() {
+		Application.Quit();
+	}
 }
