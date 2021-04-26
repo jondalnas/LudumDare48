@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour {
 				transform.position = cols[index].transform.position;
 				cols[index].GetComponent<EnemyController>().KillInside(EnemyController.DeathStyle.EXPLOSION);
 
-				if (timeScaleTarget != 1) timeScaleTarget = 1;
+				if (Time.timeScale != 1) timeScaleTarget = 1;
 			}
 		}
 	}

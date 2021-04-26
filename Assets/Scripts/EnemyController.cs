@@ -13,6 +13,11 @@ public abstract class EnemyController : MonoBehaviour {
 	public Sprite shotSprite;
 	public Sprite decapSprite;
 	private SpriteRenderer sr;
+	protected Vector2 move;
+	private Vector2 playerVel;
+	public Transform[] patrolPoints;
+	protected int targetCount;
+	private int patrolDir = -1;
 
 	public enum DeathStyle {
 		DECAP,
@@ -22,9 +27,10 @@ public abstract class EnemyController : MonoBehaviour {
 
 	protected Rigidbody2D rb;
 	public float speed;
+	public float patrolSpeed;
 	private bool playerNoticed;
 	protected Animator anim;
-	protected GameObject target;
+	protected Transform target;
 	protected bool hasTarget;
 	public float minDist = 0.5f;
 	public float closeDist = 3f;
@@ -54,7 +60,23 @@ public abstract class EnemyController : MonoBehaviour {
 
 		detail = GameObject.Find("Detail").GetComponent<Detail>();
 
+		hasTarget = patrolPoints.Length != 0;
+		if (hasTarget) target = patrolPoints[0];
+
 		Init();
+	}
+
+
+	private void FixedUpdate() {
+		if (beingControlled) {
+			rb.velocity = playerVel;
+		} else if (hasTarget) {
+			if (!target.CompareTag("Player")) {
+				rb.velocity = move * patrolSpeed;
+			} else {
+				rb.velocity = move * speed;
+			}
+		}
 	}
 
 	// Update is called once per frame
@@ -75,7 +97,7 @@ public abstract class EnemyController : MonoBehaviour {
 			transform.rotation = rot;
 
 			//Player movement
-			rb.velocity = (Input.GetAxis("Horizontal") * Vector2.right + Input.GetAxis("Vertical") * Vector2.up) * speed;
+			playerVel = (Input.GetAxis("Horizontal") * Vector2.right + Input.GetAxis("Vertical") * Vector2.up) * speed;
 			if (rb.velocity.sqrMagnitude < 0.001) {
 				anim.SetBool("Run", false);
 			} else {
@@ -100,20 +122,35 @@ public abstract class EnemyController : MonoBehaviour {
 		}
 
 		if (hasTarget) {
-			Vector3 move = target.transform.position - transform.position;
+			move = target.position - transform.position;
 			float dist = move.magnitude;
+			Quaternion rot = Quaternion.LookRotation(move, Vector3.back);
+			rot.x = 0;
+			rot.y = 0;
+			transform.rotation = rot;
 			if (dist < closeDist) {
-				CloseToTarget();
+				if (target.CompareTag("Player")) {
+					CloseToTarget();
+					move = Vector3.zero;
+				} else {
+					move /= dist;
+					if (dist < minDist) {
+						if (targetCount >= patrolPoints.Length -1 || targetCount <= 0) {
+							patrolDir = -patrolDir;
+						}
+						targetCount += patrolDir;
+						
+						target = patrolPoints[targetCount];
+					}
+				}
 			} else {
+				move /= dist;
 				AwayFromTarget();
-				rb.velocity = move / dist * speed;
-				Quaternion rot = Quaternion.LookRotation(move, Vector3.back);
-				rot.x = 0;
-				rot.y = 0;
-				transform.rotation = rot;
+				
 				anim.SetBool("Run", true);
 			}
 		} else {
+			move = Vector3.zero;
 			anim.SetBool("Run", false);
 		}
 

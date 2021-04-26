@@ -8,7 +8,7 @@ public class Pistol : EnemyController {
 
 	override protected void NoticePlayer() {
 		hasTarget = true;
-		target = player;
+		target = player.transform;
 	}
 
 	override protected void HitTarget() { }
@@ -18,12 +18,7 @@ public class Pistol : EnemyController {
 	}
 
 	override protected void CloseToTarget() {
-		Vector3 move = target.transform.position - transform.position;
-		Quaternion rot = Quaternion.LookRotation(move, Vector3.back);
-		rot.x = 0;
-		rot.y = 0;
-		transform.rotation = rot;
-		if (target == player) {
+		if (target == player.transform) {
 			anim.SetBool("Gun", true);
 			rb.velocity = Vector2.zero;
 			timer += Time.deltaTime;

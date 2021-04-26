@@ -267,7 +267,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSprite: {fileID: 126033285122876555, guid: a55b4a0c4b8ed8a45ad003a0d02dbefb, type: 3}
   decapSprite: {fileID: 3916042808583375364, guid: a55b4a0c4b8ed8a45ad003a0d02dbefb, type: 3}
+  patrolPoints: []
   speed: 5
+  patrolSpeed: 2
   minDist: 0.5
   closeDist: 5
   pistolCooldown: 0.25
