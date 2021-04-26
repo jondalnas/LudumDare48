@@ -52,15 +52,17 @@ public class Replay : MonoBehaviour {
 					}
 				}
 			} else {
-				Camera.main.GetComponent<CameraController>().grainyness = Mathf.Pow(1.0f - (float)replayIndex / totalFrames, 20);
+				Camera.main.GetComponent<CameraController>().grainyness = Mathf.Pow(1.0f - (float)replayIndex / totalFrames, 5);
 
-				for (int i = 0; i < replayObjects.Count; i++) {
+				/*for (int i = 0; i < replayObjects.Count; i++) {
 					int index = i + replayObjects.Count * replayIndex;
 
 					replayObjectsArray[i].ReplayData(replayIndex, replayArray[index]);
-				}
+				}*/
+				replayObjectsArray[0].ReplayData(replayIndex, replayArray[replayObjects.Count * replayIndex]);
 
-				replayIndex -= 10;
+				replayIndex -= totalFrames / (5 * 50) < 10 ? 10 : totalFrames / (5 * 50);
+				
 				if (replayIndex < 0) {
 					GameLoop.RestartLevel();
 				}
