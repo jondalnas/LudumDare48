@@ -6,14 +6,12 @@ Grim Reaper infiltration enemy base:
 	-Using scythe as boomerang
 	-Add bullet to bullet time
 	-Thinner walls
-	Enemy physics should be in FixedUpdate
-	Patrolling enemies
-	Doors
-	Replay
-	Pushing enemies with other enemies shouldn't be possible
+	-Enemy physics should be in FixedUpdate
+	-Patrolling enemies
+	-Doors
+	-Replay
+	-Pushing enemies with other enemies shouldn't be possible
 	GUI that shows cooldowns
-	Summon ability
-		Dog dragging peaple to hell
 	If other enemies doesn't suspect you and you kill someone horrifically, then you stun them
 	
 	Polish:
@@ -24,6 +22,9 @@ Grim Reaper infiltration enemy base:
 		Purple "hell" particles behind you
 		Every level is introduced with a new enemy and a little cutscene
 		Ranking based on aggression
+		Summon ability
+			Dog dragging peaple to hell
+		Throwinf scythe looks wrong
 	
 	
 	Game rules:

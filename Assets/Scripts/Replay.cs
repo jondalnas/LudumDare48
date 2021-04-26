@@ -40,11 +40,20 @@ public class Replay : MonoBehaviour {
 
 			if (replayIndex >= totalFrames) {
 				IN_REPLAY = false;
+				replayIndex = 0;
+
+				foreach (IReplayable ro in replayObjects) {
+					ro.ReplayEnded();
+				}
 			}
 		}
 	}
 
 	public static void StartReplay() {
+		foreach (IReplayable ro in replayObjects) {
+			ro.ReplayReset();
+		}
+
 		IN_REPLAY = true;
 
 		replayArray = replay.ToArray();

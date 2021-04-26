@@ -15,6 +15,8 @@ public class Machine : EnemyController {
 	}
 
 	protected override void CloseToTarget() {
+		move = Vector3.zero;
+
 		if (target == player.transform) {
 			anim.SetBool("Gun", true);
 			rb.velocity = Vector2.zero;
@@ -22,16 +24,11 @@ public class Machine : EnemyController {
 		}
 	}
 
-	protected override void HitTarget() {
-	}
+	protected override void HitTarget() { }
 
-	protected override void Init() {
-	}
+	protected override void Init() { }
 
-	protected override void NoticePlayer() {
-		hasTarget = true;
-		target = player.transform;
-	}
+	protected override void NoticePlayer() { }
 
 	protected override void StopAttack() {
 		anim.SetBool("Shoot", false);
@@ -74,5 +71,15 @@ public class Machine : EnemyController {
 
 	protected override void PlayerAvoidedAttack() {
 		StartCoroutine(shotBullet.GetComponent<Bullet>().Destroy());
+	}
+
+	protected override object[] GetAnimationData() {
+		return new object[] { anim.GetBool("Run"), anim.GetBool("Gun"), anim.GetBool("Shoot") };
+	}
+
+	protected override void SetAnimationData(object[] data) {
+		anim.SetBool("Run", (bool)data[0]);
+		anim.SetBool("Gun", (bool)data[1]);
+		anim.SetBool("Shoot", (bool)data[1]);
 	}
 }
