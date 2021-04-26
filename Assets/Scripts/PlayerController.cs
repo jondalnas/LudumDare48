@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour, IReplayable {
 	private Transform mouseColliderTransform;
 	public float teleportCooldown = 4f;
 	private float teleportTimer;
+	private ParticleSystem ps;
 
 	private Animator anim;
 	private bool attackTrigger;
@@ -25,8 +26,13 @@ public class PlayerController : MonoBehaviour, IReplayable {
 	private float timeScaleTarget = 1;
 	private List<GameObject> killers = new List<GameObject>();
 
+	private float enemyControlCooldown = 5f;
+	private float enemyControlTimer;
 	private bool controllingEnemy;
 	public Transform enemy;
+	private Transform orb;
+	public float orbSpeed;
+	public SpriteRenderer orbRender;
 
 	private Collider2D winCol;
 	private Collider2D playerCol;
@@ -43,6 +49,7 @@ public class PlayerController : MonoBehaviour, IReplayable {
 		scythe = transform.Find("Sprite").Find("Scythe");
 		scytheCollider = scythe.GetComponent<BoxCollider2D>();
 		sr = scythe.GetComponent<SpriteRenderer>();
+		ps = transform.Find("Teleport particles").GetComponent<ParticleSystem>();
 
 		mouseColliderTransform = transform.Find("Mouse collider");
 		mouseCollider = mouseColliderTransform.GetComponent<CircleCollider2D>();
@@ -56,6 +63,9 @@ public class PlayerController : MonoBehaviour, IReplayable {
 
 		winCol = GameObject.Find("Win").GetComponent<Collider2D>();
 		playerCol = GetComponent<Collider2D>();
+
+		orb = transform.Find("Orb");
+		orbRender = orb.GetComponentInChildren<SpriteRenderer>();
 	}
 
 	void Update() {
@@ -124,24 +134,35 @@ public class PlayerController : MonoBehaviour, IReplayable {
 		}
 
 		//Taking over enemies
-		if (Input.GetButtonDown("Enemy Control")) {
-			Collider2D[] cols = new Collider2D[4];
-			int colNum;
-			if ((colNum = mouseCollider.OverlapCollider(enemyContactFilter, cols)) != 0) {
-				float dist = float.PositiveInfinity;
-				int index = -1;
-				for (int i = 0; i < colNum; i++) {
-					float currDist = (cols[i].transform.position - transform.position).sqrMagnitude;
-					if (currDist < dist) {
-						dist = currDist;
-						index = i;
-					}
-				}
+		enemyControlTimer -= Time.deltaTime;
+		if (enemyControlTimer < 0) {
+			if (!orb.gameObject.activeSelf) orb.gameObject.SetActive(true);
 
-				controllingEnemy = true;
-				enemy = cols[index].transform;
-				Camera.main.GetComponent<CameraController>().SetTarget(cols[index].transform);
-				cols[index].GetComponent<EnemyController>().TakeOver();
+			orb.Rotate(0, 0, orbSpeed * Time.deltaTime);
+
+			if (Input.GetButtonDown("Enemy Control")) {
+				Collider2D[] cols = new Collider2D[4];
+				int colNum;
+				if ((colNum = mouseCollider.OverlapCollider(enemyContactFilter, cols)) != 0) {
+					float dist = float.PositiveInfinity;
+					int index = -1;
+					for (int i = 0; i < colNum; i++) {
+						float currDist = (cols[i].transform.position - transform.position).sqrMagnitude;
+						if (currDist < dist) {
+							dist = currDist;
+							index = i;
+						}
+					}
+
+					enemyControlTimer = enemyControlCooldown;
+
+					if (orb.gameObject.activeSelf) orb.gameObject.SetActive(false);
+
+					controllingEnemy = true;
+					enemy = cols[index].transform;
+					Camera.main.GetComponent<CameraController>().SetTarget(cols[index].transform);
+					cols[index].GetComponent<EnemyController>().TakeOver();
+				}
 			}
 		}
 
@@ -151,35 +172,40 @@ public class PlayerController : MonoBehaviour, IReplayable {
 		mouseColliderTransform.position = mouseWorldPos;
 
 		teleportTimer -= Time.deltaTime;
-		if (teleportTimer < 0 && Input.GetButtonDown("Teleport")) {
-			Collider2D[] cols = new Collider2D[4];
-			int colNum;
-			if ((colNum = mouseCollider.OverlapCollider(enemyContactFilter, cols)) != 0) {
-				float dist = float.PositiveInfinity;
-				int index = -1;
-				for (int i = 0; i < colNum; i++) {
-					float currDist = (cols[i].transform.position - transform.position).sqrMagnitude;
-					if (currDist < dist) {
-						dist = currDist;
-						index = i;
-					}
-				}
-
-				teleportTimer = teleportCooldown;
-
-				transform.position = cols[index].transform.position;
-				cols[index].GetComponent<EnemyController>().KillInside(EnemyController.DeathStyle.EXPLOSION);
-
-				if (timeScaleTarget != 1) {
-					timeScaleTarget = 1;
-
-					foreach (GameObject killer in killers) {
-						killer.SendMessage("PlayerAvoidedAttack");
+		if (teleportTimer < 0) {
+			if (!ps.isPlaying) ps.Play();
+			if (Input.GetButtonDown("Teleport")) {
+				Collider2D[] cols = new Collider2D[4];
+				int colNum;
+				if ((colNum = mouseCollider.OverlapCollider(enemyContactFilter, cols)) != 0) {
+					float dist = float.PositiveInfinity;
+					int index = -1;
+					for (int i = 0; i < colNum; i++) {
+						float currDist = (cols[i].transform.position - transform.position).sqrMagnitude;
+						if (currDist < dist) {
+							dist = currDist;
+							index = i;
+						}
 					}
 
-					killers.Clear();
+					teleportTimer = teleportCooldown;
+
+					transform.position = cols[index].transform.position;
+					cols[index].GetComponent<EnemyController>().KillInside(EnemyController.DeathStyle.EXPLOSION);
+
+					if (timeScaleTarget != 1) {
+						timeScaleTarget = 1;
+
+						foreach (GameObject killer in killers) {
+							killer.SendMessage("PlayerAvoidedAttack");
+						}
+
+						killers.Clear();
+					}
 				}
 			}
+		} else {
+			if (!ps.isStopped) ps.Stop();
 		}
 
 		//Throw scythe
@@ -276,5 +302,8 @@ public class PlayerController : MonoBehaviour, IReplayable {
 		ScytheReturned();
 	}
 
-	public void ReplayReset() { }
+	public void ReplayReset() {
+		orb.gameObject.SetActive(false);
+		ps.Stop();
+	}
 }
