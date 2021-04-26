@@ -7,12 +7,11 @@ public class Pistol : EnemyController {
 	public float bulletDistance = 1f;
 	private GameObject shotBullet;
 
+	private bool shoot;
+
 	override protected void Init() { }
 
-	override protected void NoticePlayer() {
-		hasTarget = true;
-		target = player.transform;
-	}
+	override protected void NoticePlayer() { }
 
 	override protected void HitTarget() { }
 
@@ -21,18 +20,22 @@ public class Pistol : EnemyController {
 	}
 
 	override protected void CloseToTarget() {
+		move = Vector3.zero;
+
 		if (target == player.transform) {
 			anim.SetBool("Gun", true);
 			rb.velocity = Vector2.zero;
 			timer += Time.deltaTime;
 			if (pistolCooldown < timer) {
 				anim.SetTrigger("Shoot");
+				shoot = true;
 				timer = 0;
 			}
 		}
 	}
 
 	override protected void Attack() {
+		shoot = true;
 		anim.SetTrigger("Shoot");
 	}
 
@@ -70,6 +73,19 @@ public class Pistol : EnemyController {
 
 	protected override void TakenOver() {
 		anim.SetBool("Gun", true);
+	}
+
+	protected override object[] GetAnimationData() {
+		bool sht = shoot;
+		shoot = false;
+
+		return new object[] { anim.GetBool("Run"), anim.GetBool("Gun"), sht };
+	}
+
+	protected override void SetAnimationData(object[] data) {
+		anim.SetBool("Run", (bool)data[0]);
+		anim.SetBool("Gun", (bool)data[1]);
+		if ((bool)data[3]) anim.SetTrigger("Shoot");
 	}
 
 	protected override void StopAttack() { }
