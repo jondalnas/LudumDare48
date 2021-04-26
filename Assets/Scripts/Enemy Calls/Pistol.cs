@@ -6,6 +6,7 @@ public class Pistol : EnemyController {
 	public GameObject bullet;
 	public float bulletDistance = 1f;
 	private GameObject shotBullet;
+	public GameObject hitWallParticle;
 
 	private bool shoot;
 
@@ -69,7 +70,8 @@ public class Pistol : EnemyController {
 		} else if (hit.transform.CompareTag("Enemy")) {
 			hit.transform.GetComponent<EnemyController>().Kill(transform.up, DeathStyle.SHOT);
 		} else {//Hits wall
-
+			Quaternion rot = Quaternion.LookRotation(hit.normal, Vector3.back);
+			Instantiate(hitWallParticle, hit.point, rot);
 		}
 	}
 
