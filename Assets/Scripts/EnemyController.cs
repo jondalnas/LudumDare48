@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.Events;
 using System;
 
-public abstract class EnemyController : MonoBehaviour {
+public abstract class EnemyController : MonoBehaviour, IReplayable {
 	protected GameObject player;
 
 	private ParticleSystem blood;
@@ -45,6 +45,8 @@ public abstract class EnemyController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
+		if (Replay.IN_REPLAY) return;
+
 		if (dead) return;
 
 		UpdateEnemy();
@@ -204,5 +206,15 @@ public abstract class EnemyController : MonoBehaviour {
 
 		gameObject.tag = "Player";
 		gameObject.layer = LayerMask.NameToLayer("Player");
+	}
+
+	public void ReplayData(int frame, object[] data) {
+		transform.position = (Vector3)data[0];
+		transform.rotation = (Quaternion)data[1];
+		transform.localScale = (Vector3)data[2];
+	}
+
+	public object[] CollectData() {
+		return new object[] { transform.position, transform.rotation, transform.localScale };
 	}
 }

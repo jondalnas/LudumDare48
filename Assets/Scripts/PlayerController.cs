@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour, IReplayable {
 	private Rigidbody2D rb;
 	public int speed = 5;
 	public Vector2 inputVelocity;
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour {
 	private bool controllingEnemy;
 
 	public GameObject scythePrefab;
+	private GameObject attackingScythe;
 	public bool scytheThrown;
 	private SpriteRenderer sr;
 
@@ -49,6 +50,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
+		if (Replay.IN_REPLAY) return;
+
 		Time.timeScale += (timeScaleTarget - Time.timeScale) / 10f;
 
 		if (Time.timeScale < 0.05) Time.timeScale = 0;
@@ -164,7 +167,8 @@ public class PlayerController : MonoBehaviour {
 
 		//Throw scythe
 		if (Input.GetButtonDown("Throw") && !scytheThrown && scytheCooldownTimer > scytheCooldown) {
-			Instantiate(scythePrefab, scytheLocation.position, scythe.rotation).GetComponent<Scythe>().dir = transform.up;
+			attackingScythe = Instantiate(scythePrefab, scytheLocation.position, scythe.rotation);
+			attackingScythe.GetComponent<Scythe>().dir = transform.up;
 
 			sr.enabled = false;
 
@@ -173,6 +177,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
+		if (Replay.IN_REPLAY) return;
+
 		//Player movement
 		if (!controllingEnemy) rb.velocity = inputVelocity * speed * Time.fixedDeltaTime;
 		else rb.velocity = Vector3.zero;
@@ -205,5 +211,30 @@ public class PlayerController : MonoBehaviour {
 		scytheThrown = false;
 
 		sr.enabled = true;
+	}
+
+	public void ReplayData(int frame, object[] data) {
+		transform.position = (Vector3)data[0];
+		transform.rotation = (Quaternion)data[1];
+		transform.localScale = (Vector3)data[2];
+		sr.enabled = (bool)data[3];
+
+		if (!(bool)data[4]) {
+			scytheThrown = false;
+			return;
+		}
+
+		if (!scytheThrown) {
+			attackingScythe = Instantiate(scythePrefab, scytheLocation.position, scythe.rotation);
+
+			scytheThrown = true;
+		}
+
+		attackingScythe.transform.position = (Vector3)data[5];
+		attackingScythe.transform.rotation = (Quaternion)data[6];
+	}
+
+	public object[] CollectData() {
+		return new object[] { transform.position, transform.rotation, transform.localScale, sr.enabled, scytheThrown, scytheThrown ? attackingScythe.transform.position : Vector3.zero, scytheThrown ? attackingScythe.transform.rotation : Quaternion.identity };
 	}
 }
