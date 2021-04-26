@@ -1,6 +1,7 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour, IReplayable {
 	private Rigidbody2D rb;
 	public int speed = 5;
 	public Vector2 inputVelocity;
@@ -21,17 +22,24 @@ public class PlayerController : MonoBehaviour {
 	private Animator anim;
 
 	private float timeScaleTarget = 1;
+	private List<GameObject> killers = new List<GameObject>();
 
 	private bool controllingEnemy;
 
 	private Collider2D winCol;
 	private Collider2D playerCol;
 
+	public GameObject scythePrefab;
+	private GameObject attackingScythe;
+	public bool scytheThrown;
+	private SpriteRenderer sr;
+
 	void Start() {
 		rb = GetComponent<Rigidbody2D>();
 		scytheLocation = transform.Find("Sprite").Find("Player Arm").Find("Scythe location");
 		scythe = transform.Find("Sprite").Find("Scythe");
 		scytheCollider = scythe.GetComponent<BoxCollider2D>();
+		sr = scythe.GetComponent<SpriteRenderer>();
 
 		mouseColliderTransform = transform.Find("Mouse collider");
 		mouseCollider = mouseColliderTransform.GetComponent<CircleCollider2D>();
@@ -48,6 +56,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
+		if (Replay.IN_REPLAY) return;
+
 		Time.timeScale += (timeScaleTarget - Time.timeScale) / 10f;
 
 		if (Time.timeScale < 0.05) Time.timeScale = 0;
@@ -91,17 +101,19 @@ public class PlayerController : MonoBehaviour {
 
 		//Swing scythe
 		scytheCooldownTimer += Time.deltaTime;
-		if (scytheCooldownTimer > scytheCooldown) {
-			if (Input.GetButtonDown("Attack")) {
-				anim.SetTrigger("Attack");
+		if (!scytheThrown) {
+			if (scytheCooldownTimer > scytheCooldown) {
+				if (Input.GetButtonDown("Attack")) {
+					anim.SetTrigger("Attack");
 
-				scytheCooldownTimer = 0;
-			}
-		} else { //Is swinging
-			Collider2D[] cols = new Collider2D[1];
-			if (scytheCollider.OverlapCollider(enemyContactFilter, cols) != 0) {
-				if (cols[0].gameObject.CompareTag("Enemy")) {
-					cols[0].gameObject.GetComponent<EnemyController>().Kill(cols[0].transform.position - transform.position, EnemyController.DeathStyle.DECAP);
+					scytheCooldownTimer = 0;
+				}
+			} else { //Is swinging
+				Collider2D[] cols = new Collider2D[1];
+				if (scytheCollider.OverlapCollider(enemyContactFilter, cols) != 0) {
+					if (cols[0].gameObject.CompareTag("Enemy")) {
+						cols[0].gameObject.GetComponent<EnemyController>().Kill(cols[0].transform.position - transform.position, EnemyController.DeathStyle.DECAP);
+					}
 				}
 			}
 		}
@@ -152,12 +164,32 @@ public class PlayerController : MonoBehaviour {
 				transform.position = cols[index].transform.position;
 				cols[index].GetComponent<EnemyController>().KillInside(EnemyController.DeathStyle.EXPLOSION);
 
-				if (timeScaleTarget != 1) timeScaleTarget = 1;
+				if (timeScaleTarget != 1) {
+					timeScaleTarget = 1;
+
+					foreach (GameObject killer in killers) {
+						killer.SendMessage("PlayerAvoidedAttack");
+					}
+
+					killers.Clear();
+				}
 			}
+		}
+
+		//Throw scythe
+		if (Input.GetButtonDown("Throw") && !scytheThrown && scytheCooldownTimer > scytheCooldown) {
+			attackingScythe = Instantiate(scythePrefab, scytheLocation.position, scythe.rotation);
+			attackingScythe.GetComponent<Scythe>().dir = transform.up;
+
+			sr.enabled = false;
+
+			scytheThrown = true;
 		}
 	}
 
 	void FixedUpdate() {
+		if (Replay.IN_REPLAY) return;
+
 		//Player movement
 		if (!controllingEnemy) rb.velocity = inputVelocity * speed * Time.fixedDeltaTime;
 		else rb.velocity = Vector3.zero;
@@ -171,9 +203,11 @@ public class PlayerController : MonoBehaviour {
 		Camera.main.GetComponent<CameraController>().SetTarget(transform);
 	}
 
-	public void Kill() {
+	public void Kill(GameObject killer) {
 		if (teleportTimer < 0) {
 			//Final chance
+
+			killers.Add(killer);
 
 			if (timeScaleTarget == 0) return;
 
@@ -182,5 +216,36 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			//Kill player
 		}
+	}
+
+	public void ScytheReturned() {
+		scytheThrown = false;
+
+		sr.enabled = true;
+	}
+
+	public void ReplayData(int frame, object[] data) {
+		transform.position = (Vector3)data[0];
+		transform.rotation = (Quaternion)data[1];
+		transform.localScale = (Vector3)data[2];
+		sr.enabled = (bool)data[3];
+
+		if (!(bool)data[4]) {
+			scytheThrown = false;
+			return;
+		}
+
+		if (!scytheThrown) {
+			attackingScythe = Instantiate(scythePrefab, scytheLocation.position, scythe.rotation);
+
+			scytheThrown = true;
+		}
+
+		attackingScythe.transform.position = (Vector3)data[5];
+		attackingScythe.transform.rotation = (Quaternion)data[6];
+	}
+
+	public object[] CollectData() {
+		return new object[] { transform.position, transform.rotation, transform.localScale, sr.enabled, scytheThrown, scytheThrown ? attackingScythe.transform.position : Vector3.zero, scytheThrown ? attackingScythe.transform.rotation : Quaternion.identity };
 	}
 }

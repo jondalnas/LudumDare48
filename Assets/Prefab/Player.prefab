@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 517734657231309382}
   - component: {fileID: 8988354464679256959}
   - component: {fileID: 1263147602359308127}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: Scythe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,8 +100,8 @@ BoxCollider2D:
   m_Offset: {x: -0.125, y: 0.125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.6875, y: 0.375}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.7, y: 0.375}
+    oldSize: {x: 0.625, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5518375834487328888}
   - component: {fileID: 3248865880690174070}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: Mouse collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,6 @@ GameObject:
   - component: {fileID: 1624848911298835227}
   - component: {fileID: 1624848911298835221}
   - component: {fileID: 173468842}
-
   - component: {fileID: 1926902857338671811}
   m_Layer: 0
   m_Name: Player
@@ -315,6 +314,8 @@ MonoBehaviour:
   speed: 250
   inputVelocity: {x: 0, y: 0}
   teleportCooldown: 4
+  scythePrefab: {fileID: 2946563742416957432, guid: 5c93403479e7e3749971b0caf9cd48a3, type: 3}
+  scytheThrown: 0
 --- !u!95 &173468842
 Animator:
   serializedVersion: 3
