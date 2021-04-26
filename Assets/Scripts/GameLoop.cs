@@ -8,6 +8,7 @@ public class GameLoop : MonoBehaviour {
 
 	void Awake() {
 		DontDestroyOnLoad(gameObject);
+		SceneManager.sceneLoaded += OnSceneLoaded;
 	}
 
 	public void EnemyDead() {
@@ -23,5 +24,9 @@ public class GameLoop : MonoBehaviour {
 
 		SceneManager.LoadScene(levelIndex);
 		levelIndex++;
+	}
+
+	public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+		Replay.ResetReplay();
 	}
 }
