@@ -67,13 +67,23 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 		detail = GameObject.Find("Detail").GetComponent<Detail>();
 
 		hasTarget = patrolPoints.Length != 0;
-		if (hasTarget) target = patrolPoints[0];
+		if (hasTarget) {
+			target = patrolPoints[0];
+		} else {
+			rb.bodyType = RigidbodyType2D.Static;
+		}
 
 		Init();
 	}
 
-
+	bool lastTarget = false;
 	private void FixedUpdate() {
+		if (hasTarget && !lastTarget) {
+			lastTarget = true;
+
+			rb.bodyType = RigidbodyType2D.Dynamic;
+		}
+
 		if (beingControlled) {
 			rb.velocity = playerVel;
 		} else if (hasTarget) {
@@ -276,6 +286,8 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 	internal void TakeOver() {
 		beingControlled = true;
 		firstFrame = true;
+
+		rb.bodyType = RigidbodyType2D.Dynamic;
 
 		gameObject.tag = "Player";
 		gameObject.layer = LayerMask.NameToLayer("Player");
