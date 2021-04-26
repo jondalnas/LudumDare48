@@ -20,7 +20,7 @@ public class Scythe : MonoBehaviour {
 
 		hitContactFilter = new ContactFilter2D {
 			useLayerMask = true,
-			layerMask = LayerMask.GetMask("Enemy") | LayerMask.GetMask("Level") | LayerMask.GetMask("Default")
+			layerMask = LayerMask.GetMask("Enemy") | LayerMask.GetMask("Level") | LayerMask.GetMask("Default") | LayerMask.GetMask("Ignore Raycast")
 		};
 
 		player = GameObject.Find("Player").transform;
