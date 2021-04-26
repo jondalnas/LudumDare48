@@ -62,6 +62,15 @@ public class Brawler : EnemyController {
 		anim.SetBool("Punch", false);
 	}
 
+	protected override object[] GetAnimationData() {
+		return new object[] { anim.GetBool("Punch"), anim.GetBool("Run") };
+	}
+
+	protected override void SetAnimationData(object[] data) {
+		anim.SetBool("Punch", (bool)data[0]);
+		anim.SetBool("Run", (bool)data[1]);
+	}
+
 	protected override void TakenOver() { }
 
 	protected override void PlayerAvoidedAttack() { }

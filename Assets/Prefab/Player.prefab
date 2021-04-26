@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 517734657231309382}
   - component: {fileID: 8988354464679256959}
   - component: {fileID: 1263147602359308127}
-  m_Layer: 2
+  m_Layer: 7
   m_Name: Scythe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5518375834487328888}
   - component: {fileID: 3248865880690174070}
-  m_Layer: 2
+  m_Layer: 7
   m_Name: Mouse collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 1624848911298835221}
   - component: {fileID: 173468842}
   - component: {fileID: 1926902857338671811}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}

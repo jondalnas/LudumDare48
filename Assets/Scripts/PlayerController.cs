@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour, IReplayable {
 	private float teleportTimer;
 
 	private Animator anim;
+	private bool attackTrigger;
 
 	private float timeScaleTarget = 1;
 	private List<GameObject> killers = new List<GameObject>();
@@ -105,6 +106,8 @@ public class PlayerController : MonoBehaviour, IReplayable {
 			if (scytheCooldownTimer > scytheCooldown) {
 				if (Input.GetButtonDown("Attack")) {
 					anim.SetTrigger("Attack");
+
+					attackTrigger = true;
 
 					scytheCooldownTimer = 0;
 				}
@@ -230,7 +233,11 @@ public class PlayerController : MonoBehaviour, IReplayable {
 		transform.localScale = (Vector3)data[2];
 		sr.enabled = (bool)data[3];
 
+		if ((bool)data[7]) anim.SetTrigger("Attack");
+
 		if (!(bool)data[4]) {
+			if (scytheThrown) Destroy(attackingScythe);
+
 			scytheThrown = false;
 			return;
 		}
@@ -246,6 +253,23 @@ public class PlayerController : MonoBehaviour, IReplayable {
 	}
 
 	public object[] CollectData() {
-		return new object[] { transform.position, transform.rotation, transform.localScale, sr.enabled, scytheThrown, scytheThrown ? attackingScythe.transform.position : Vector3.zero, scytheThrown ? attackingScythe.transform.rotation : Quaternion.identity };
+		bool atkTrig = attackTrigger;
+		attackTrigger = false;
+		return new object[] {	transform.position, 
+								transform.rotation, 
+								transform.localScale, 
+								sr.enabled, 
+								scytheThrown,
+								scytheThrown ? attackingScythe.transform.position : Vector3.zero, 
+								scytheThrown ? attackingScythe.transform.rotation : Quaternion.identity,
+								atkTrig };
 	}
+
+	public void ReplayEnded() {
+		if (attackingScythe) Destroy(attackingScythe);
+
+		ScytheReturned();
+	}
+
+	public void ReplayReset() { }
 }
