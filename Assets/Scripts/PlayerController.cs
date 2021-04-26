@@ -212,7 +212,7 @@ public class PlayerController : MonoBehaviour, IReplayable {
 	}
 
 	public void Kill(GameObject killer) {
-		if (teleportTimer < 0) {
+		if (teleportTimer < 0 && !killer.GetComponent<Boss>()) {
 			//Final chance
 
 			killers.Add(killer);

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5273621489548819690}
   - component: {fileID: 2642045254017189460}
   - component: {fileID: 7236223329057722488}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Big Pistol
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -129,6 +129,8 @@ MonoBehaviour:
   knockbackTime: 1
   chargeSpeed: 7
   invTime: 1
+  knockedoutTime: 1
+  knockedoutTimer: 0
 --- !u!1 &2078867837152965777
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +142,7 @@ GameObject:
   - component: {fileID: 7664988205353422844}
   - component: {fileID: 2582177903792905672}
   - component: {fileID: 5235666450109218211}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Inside Blood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4945,7 +4947,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3565008737858642153}
   - component: {fileID: 4447154899664022891}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Big pistol arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5029,7 +5031,7 @@ GameObject:
   - component: {fileID: 1612479845305093622}
   - component: {fileID: 64596602315031003}
   - component: {fileID: 7904921544401735870}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Blood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9834,7 +9836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2466227769662808365}
   - component: {fileID: 7284082379296115643}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Muzzle Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9917,7 +9919,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5813064353173106554}
   - component: {fileID: 8458093659334475057}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10000,7 +10002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 679875522303672416}
   - component: {fileID: 7029574897532460538}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Big pistol arm (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
