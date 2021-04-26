@@ -2,35 +2,53 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameLoop : MonoBehaviour {
-	private int levelIndex = 1;
+	private static int levelIndex = 0;
 
-	private int awokenEnemies;
+	private static int awokenEnemies;
+	private static bool hasBeatenStage;
 
 	void Awake() {
 		DontDestroyOnLoad(gameObject);
 		SceneManager.sceneLoaded += OnSceneLoaded;
 	}
 
-	public void EnemyDead() {
-		awokenEnemies--;
+	void Update() {
+		Debug.Log(levelIndex);
+		if (hasBeatenStage && Input.anyKeyDown) ForceNextLevel();
 	}
 
-	public void EnemySeen() {
-		awokenEnemies++;
-	}
+	public static void NextLevel() {
+		if (levelIndex == 0) {
+			levelIndex++;
+			SceneManager.LoadScene(levelIndex);
+			return;
+		}
 
-	public void NextLevel() {
 		if (awokenEnemies > 0) return;
 
-		SceneManager.LoadScene(levelIndex);
-		levelIndex++;
+		hasBeatenStage = true;
+
+		Replay.StartReplay();
+	}
+
+	private void ForceNextLevel() {
+		SceneManager.LoadScene(++levelIndex);
+		hasBeatenStage = false;
 	}
 
 	public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
 		Replay.ResetReplay();
 	}
 
-	public void CloseGame() {
+	public static void CloseGame() {
 		Application.Quit();
+	}
+
+	public static void EnemyDead() {
+		awokenEnemies--;
+	}
+
+	public static void EnemySeen() {
+		awokenEnemies++;
 	}
 }

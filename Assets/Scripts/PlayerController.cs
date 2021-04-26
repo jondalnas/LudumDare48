@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour, IReplayable {
 
 		//Check if player has met victory conditions
 		if (winCol.IsTouching(playerCol)) {
-			GameObject.Find("-GAME LOOP-").GetComponent<GameLoop>().NextLevel();
+			GameLoop.NextLevel();
 		}
 
 		//Look at mouse
@@ -210,6 +210,9 @@ public class PlayerController : MonoBehaviour, IReplayable {
 	}
 
 	public void Kill(GameObject killer) {
+		if (Replay.IN_REPLAY)
+			Debug.Log("Hello");
+
 		if (teleportTimer < 0) {
 			//Final chance
 

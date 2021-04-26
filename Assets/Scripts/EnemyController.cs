@@ -47,6 +47,8 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 
 	private Detail detail;
 
+	private bool isAwake;
+
 	// Start is called before the first frame update
 	void Start() {
 		bloodTransform = transform.Find("Blood");
@@ -78,6 +80,8 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 
 	bool lastTarget = false;
 	private void FixedUpdate() {
+		if (Replay.IN_REPLAY) return;
+
 		if (hasTarget && !lastTarget) {
 			rb.bodyType = RigidbodyType2D.Dynamic;
 		}
@@ -193,9 +197,10 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, toPlayer, toPlayer.magnitude, LayerMask.GetMask("Level"));
 			if (!hit) {
 				playerNoticed = true;
+				isAwake = true;
 				target = player.transform;
 
-				GameObject.Find("-GAME LOOP-").SendMessage("EnemySeen");
+				if (!isAwake) GameObject.Find("-GAME LOOP-").SendMessage("EnemySeen");
 			} else {
 				Transform enemy;
 				if (enemy = player.transform.GetComponent<PlayerController>().enemy) {
@@ -204,9 +209,10 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 
 					if (!hit) {
 						playerNoticed = true;
+						isAwake = true;
 						target = enemy.transform;
 
-						GameObject.Find("-GAME LOOP-").SendMessage("EnemySeen");
+						if (!isAwake) GameObject.Find("-GAME LOOP-").SendMessage("EnemySeen");
 					}
 				}
 			}
@@ -258,7 +264,7 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 	private void Kill(DeathStyle style) {
 		this.style = style;
 
-		if (playerNoticed)
+		if (isAwake)
 			GameObject.Find("-GAME LOOP-").SendMessage("EnemyDead");
 		anim.enabled = false;
 

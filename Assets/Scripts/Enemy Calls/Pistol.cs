@@ -51,6 +51,8 @@ public class Pistol : EnemyController {
 	}
 
 	public void Shoot() {
+		if (Replay.IN_REPLAY) return;
+
 		RaycastHit2D[] hits = new RaycastHit2D[1];
 		if (col.Raycast(transform.up, hits, Mathf.Infinity, ~((1 << LayerMask.NameToLayer("Ignore Raycast")) | (1 << LayerMask.NameToLayer("UI")))) != 0) {
 			ShootBullet(hits[0]);
@@ -62,7 +64,7 @@ public class Pistol : EnemyController {
 			hit.transform.GetComponent<PlayerController>().Kill(gameObject);
 
 			Vector3 toPlayer = transform.position - hit.transform.position;
-			shotBullet = Instantiate(bullet, toPlayer.normalized * bulletDistance, Quaternion.Euler(0, 0, Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg + 180));
+			shotBullet = Instantiate(bullet, toPlayer.normalized * bulletDistance + hit.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg + 180));
 			shotBullet.GetComponent<Bullet>().shooting = transform;
 		} else if (hit.transform.CompareTag("Enemy")) {
 			hit.transform.GetComponent<EnemyController>().Kill(transform.up, DeathStyle.SHOT);
@@ -85,7 +87,7 @@ public class Pistol : EnemyController {
 	protected override void SetAnimationData(object[] data) {
 		anim.SetBool("Run", (bool)data[0]);
 		anim.SetBool("Gun", (bool)data[1]);
-		if ((bool)data[3]) anim.SetTrigger("Shoot");
+		if ((bool)data[2]) anim.SetTrigger("Shoot");
 	}
 
 	protected override void StopAttack() { }

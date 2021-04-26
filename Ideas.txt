@@ -15,7 +15,7 @@ Grim Reaper infiltration enemy base:
 	If other enemies doesn't suspect you and you kill someone horrifically, then you stun them
 	
 	Polish:
-		Replaying looks like a VHS
+		-Replaying looks like a VHS
 		Enemies turn too fast
 		When bullet hits surface, it should make a little particle effect
 		Floor changes color
@@ -25,6 +25,8 @@ Grim Reaper infiltration enemy base:
 		Summon ability
 			Dog dragging peaple to hell
 		Throwinf scythe looks wrong
+		How to play
+		Scythe goes throug windows
 	
 	
 	Game rules:

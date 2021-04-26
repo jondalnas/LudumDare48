@@ -12,14 +12,10 @@ public class Replay : MonoBehaviour {
 	public static bool IN_REPLAY;
 	private static int replayIndex;
 
+	private bool loop = true;
+
 	void Start() {
 		ResetReplay();
-	}
-
-	void Update() {
-		if (Input.GetKeyDown(KeyCode.R)) {
-			StartReplay();
-		}
 	}
 
 	void FixedUpdate() {
@@ -39,11 +35,18 @@ public class Replay : MonoBehaviour {
 			replayIndex++;
 
 			if (replayIndex >= totalFrames) {
-				IN_REPLAY = false;
 				replayIndex = 0;
 
-				foreach (IReplayable ro in replayObjects) {
-					ro.ReplayEnded();
+				if (!loop) {
+					IN_REPLAY = false;
+
+					foreach (IReplayable ro in replayObjects) {
+						ro.ReplayEnded();
+					}
+				} else {
+					foreach (IReplayable ro in replayObjects) {
+						ro.ReplayReset();
+					}
 				}
 			}
 		}
@@ -67,6 +70,10 @@ public class Replay : MonoBehaviour {
 		replayObjects.Add((IReplayable)GameObject.Find("Player").GetComponent<PlayerController>());
 		foreach (GameObject e in GameObject.FindGameObjectsWithTag("Enemy")) {
 			replayObjects.Add(e.GetComponent<EnemyController>());
+		}
+
+		foreach (DoorReplay d in (DoorReplay[])GameObject.FindObjectsOfType(typeof(DoorReplay))) {
+			replayObjects.Add(d);
 		}
 
 		IN_REPLAY = false;
