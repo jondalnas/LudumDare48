@@ -10,6 +10,10 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 	private ParticleSystem insideBlood;
 	private Transform bloodTransform;
 	private bool dead;
+	private bool lastDead;
+	private DeathStyle style;
+	private bool inside;
+	private Vector3 killDir;
 	public Sprite shotSprite;
 	public Sprite decapSprite;
 	private SpriteRenderer sr;
@@ -18,6 +22,7 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 	public Transform[] patrolPoints;
 	protected int targetCount;
 	private int patrolDir = -1;
+	private Sprite defaultSprite;
 
 	public enum DeathStyle {
 		DECAP,
@@ -50,6 +55,7 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 		blood.Stop();
 		insideBlood.Stop();
 		sr = GetComponentInChildren<SpriteRenderer>();
+		defaultSprite = sr.sprite;
 
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
@@ -61,13 +67,22 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 		detail = GameObject.Find("Detail").GetComponent<Detail>();
 
 		hasTarget = patrolPoints.Length != 0;
-		if (hasTarget) target = patrolPoints[0];
+		if (hasTarget) {
+			target = patrolPoints[0];
+		} else {
+			rb.bodyType = RigidbodyType2D.Static;
+		}
 
 		Init();
 	}
 
-
+	bool lastTarget = false;
 	private void FixedUpdate() {
+		if (hasTarget && !lastTarget) {
+			rb.bodyType = RigidbodyType2D.Dynamic;
+		}
+		lastTarget = hasTarget;
+
 		if (beingControlled) {
 			rb.velocity = playerVel;
 		} else if (hasTarget) {
@@ -124,6 +139,20 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 		}
 
 		if (hasTarget) {
+			EnemyController ec;
+			if (ec = target.GetComponent<EnemyController>()) {
+				if (ec.dead) {
+					hasTarget = patrolPoints.Length != 0;
+					if (hasTarget) {
+						target = patrolPoints[0];
+					} else {
+						rb.bodyType = RigidbodyType2D.Static;
+					}
+
+					playerNoticed = false;
+				}
+			}
+
 			move = target.position - transform.position;
 			float dist = move.magnitude;
 			Quaternion rot = Quaternion.LookRotation(move, Vector3.back);
@@ -133,22 +162,21 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 			if (dist < closeDist) {
 				if (target.CompareTag("Player")) {
 					CloseToTarget();
-					move = Vector3.zero;
 				} else {
 					move /= dist;
 					if (dist < minDist) {
-						if (targetCount >= patrolPoints.Length -1 || targetCount <= 0) {
+						if (targetCount >= patrolPoints.Length - 1 || targetCount <= 0) {
 							patrolDir = -patrolDir;
 						}
 						targetCount += patrolDir;
-						
+
 						target = patrolPoints[targetCount];
 					}
 				}
 			} else {
 				move /= dist;
 				AwayFromTarget();
-				
+
 				anim.SetBool("Run", true);
 			}
 		} else {
@@ -157,14 +185,30 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 		}
 
 		if (playerNoticed) {
+			hasTarget = true;
+
 			NoticePlayer();
 		} else {
 			Vector3 toPlayer = player.transform.position - transform.position;
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, toPlayer, toPlayer.magnitude, LayerMask.GetMask("Level"));
 			if (!hit) {
 				playerNoticed = true;
+				target = player.transform;
 
 				GameObject.Find("-GAME LOOP-").SendMessage("EnemySeen");
+			} else {
+				Transform enemy;
+				if (enemy = player.transform.GetComponent<PlayerController>().enemy) {
+					toPlayer = enemy.position - transform.position;
+					hit = Physics2D.Raycast(transform.position, toPlayer, toPlayer.magnitude, LayerMask.GetMask("Level"));
+
+					if (!hit) {
+						playerNoticed = true;
+						target = enemy.transform;
+
+						GameObject.Find("-GAME LOOP-").SendMessage("EnemySeen");
+					}
+				}
 			}
 		}
 	}
@@ -204,13 +248,15 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 	public void Kill(Vector2 dir, DeathStyle style) {
 		if (dead) return;
 
+		killDir = dir;
+
 		transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90);
 
 		Kill(style);
 	}
 
 	private void Kill(DeathStyle style) {
-		if (dead) return;
+		this.style = style;
 
 		if (playerNoticed)
 			GameObject.Find("-GAME LOOP-").SendMessage("EnemyDead");
@@ -249,13 +295,15 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 		detail.ColorFromPos(Color.HSVToRGB(UnityEngine.Random.Range(0.0f, 1.0f), 1.0f, 1.0f), 40, transform.position);
 
 		if (!beingControlled) return;
-		
+
 		beingControlled = false;
 		player.GetComponent<PlayerController>().LoseControl();
 	}
 
 	public void KillInside(DeathStyle style) {
 		if (dead) return;
+
+		inside = true;
 
 		insideBlood.Play();
 		StartCoroutine(StopInsideBlood(3f));
@@ -267,17 +315,51 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 		beingControlled = true;
 		firstFrame = true;
 
+		rb.bodyType = RigidbodyType2D.Dynamic;
+
 		gameObject.tag = "Player";
 		gameObject.layer = LayerMask.NameToLayer("Player");
+	}
+
+	public void ReplayReset() {
+		blood.Simulate(0, true, true);
+		insideBlood.Simulate(0, true, true);
+		dead = false;
+		sr.sprite = defaultSprite;
+
+		anim.enabled = true;
+		anim.Play("Idle");
+
+		foreach (SpriteRenderer renderer in GetComponentsInChildren<SpriteRenderer>()) {
+			renderer.enabled = true;
+		}
 	}
 
 	public void ReplayData(int frame, object[] data) {
 		transform.position = (Vector3)data[0];
 		transform.rotation = (Quaternion)data[1];
 		transform.localScale = (Vector3)data[2];
+
+		if ((bool)data[3]) {
+			DeathStyle style = (DeathStyle)data[4];
+
+			if ((bool)data[5]) KillInside(style);
+			else Kill((Vector3)data[6], style);
+		}
+
+		SetAnimationData((object[])data[7]);
 	}
 
 	public object[] CollectData() {
-		return new object[] { transform.position, transform.rotation, transform.localScale };
+		bool killed = dead && !lastDead;
+
+		lastDead = dead;
+
+		return new object[] { transform.position, transform.rotation, transform.localScale, killed, style, inside, killDir, GetAnimationData() };
 	}
+
+	protected abstract object[] GetAnimationData();
+	protected abstract void SetAnimationData(object[] data);
+
+	public void ReplayEnded() {	}
 }

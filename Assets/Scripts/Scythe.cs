@@ -27,6 +27,8 @@ public class Scythe : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
+		if (Replay.IN_REPLAY) return;
+
 		if (dir == Vector3.zero) Debug.LogError("Direction has not been initialized or it has been initialized to zero");
 
 		//Move and rotate
