@@ -79,7 +79,7 @@ TextureImporter:
     second: Levels_24
   - first:
       213: -5791767033236881221
-    second: Levels_25
+    second: Table
   - first:
       213: 518651677979680353
     second: Levels_26
@@ -160,34 +160,34 @@ TextureImporter:
     second: Levels_51
   - first:
       213: 877421442724664573
-    second: Levels_52
+    second: Floor3
   - first:
       213: 1474598443187654088
-    second: Levels_53
+    second: Wall3 corner
   - first:
       213: -8818932843678412719
-    second: Levels_54
+    second: Wall3 T
   - first:
       213: 2270059920431526372
-    second: Levels_55
+    second: Wall3 plus
   - first:
       213: -8334365589180940073
-    second: Levels_56
+    second: Wall3 end
   - first:
       213: -4835893538911411178
-    second: Levels_57
+    second: Wall3
   - first:
       213: 5652869810599353962
     second: Levels_58
   - first:
       213: -2755630054300994642
-    second: Levels_59
+    second: Fridge
   - first:
       213: 2372609485246399775
     second: Levels_60
   - first:
       213: 3090400195626065868
-    second: Levels_61
+    second: Kitchen
   - first:
       213: -2030541349804890715
     second: Levels_62
@@ -232,13 +232,13 @@ TextureImporter:
     second: Levels_76
   - first:
       213: -6833183645107935186
-    second: Levels_77
+    second: Cutlery
   - first:
       213: -5711001475422905845
-    second: Levels_78
+    second: Choppingboard
   - first:
       213: 6753287757375034794
-    second: Levels_79
+    second: Plate
   - first:
       213: -4349733954680485890
     second: Levels_82
@@ -277,10 +277,10 @@ TextureImporter:
     second: Levels_93
   - first:
       213: -8306060602701793935
-    second: Levels_94
+    second: Stain
   - first:
       213: 6963184091009953528
-    second: Levels_95
+    second: Dirt
   - first:
       213: -9207103689779174642
     second: Levels_96
@@ -1366,15 +1366,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_25
+      name: Table
       rect:
         serializedVersion: 2
         x: 144
-        y: 224
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 208
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.25, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1382,27 +1382,6 @@ TextureImporter:
       bones: []
       spriteID: bb00912c1928f9fa0800000000000000
       internalID: -5791767033236881221
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Levels_26
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 224
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 16e932404fe923700800000000000000
-      internalID: 518651677979680353
       vertices: []
       indices: 
       edges: []
@@ -1436,8 +1415,8 @@ TextureImporter:
         y: 224
         width: 32
         height: 16
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1639,48 +1618,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_41
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 208
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7c8656dda93a97510800000000000000
-      internalID: 1547447832513177799
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Levels_42
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 208
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c27ef263e425f25b0800000000000000
-      internalID: -5390999733069158612
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Pillow and blanket
       rect:
         serializedVersion: 2
@@ -1709,8 +1646,8 @@ TextureImporter:
         y: 208
         width: 32
         height: 16
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1786,7 +1723,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_52
+      name: Floor3
       rect:
         serializedVersion: 2
         x: 64
@@ -1807,7 +1744,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_53
+      name: Wall3 corner
       rect:
         serializedVersion: 2
         x: 80
@@ -1828,7 +1765,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_54
+      name: Wall3 T
       rect:
         serializedVersion: 2
         x: 96
@@ -1849,7 +1786,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_55
+      name: Wall3 plus
       rect:
         serializedVersion: 2
         x: 112
@@ -1870,7 +1807,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_56
+      name: Wall3 end
       rect:
         serializedVersion: 2
         x: 128
@@ -1891,7 +1828,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_57
+      name: Wall3
       rect:
         serializedVersion: 2
         x: 144
@@ -1933,7 +1870,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_59
+      name: Fridge
       rect:
         serializedVersion: 2
         x: 176
@@ -1954,36 +1891,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_60
+      name: Kitchen
       rect:
         serializedVersion: 2
         x: 192
         y: 192
-        width: 16
+        width: 64
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1585d691c33de020800000000000000
-      internalID: 2372609485246399775
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Levels_61
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 192
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.125, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1991,48 +1907,6 @@ TextureImporter:
       bones: []
       spriteID: ccfd612ba9e43ea20800000000000000
       internalID: 3090400195626065868
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Levels_62
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 192
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5a5232f866112d3e0800000000000000
-      internalID: -2030541349804890715
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Levels_63
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 192
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0dc7f8d8750e63230800000000000000
-      internalID: 3618326017280539856
       vertices: []
       indices: 
       edges: []
@@ -2290,7 +2164,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_77
+      name: Cutlery
       rect:
         serializedVersion: 2
         x: 208
@@ -2311,7 +2185,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_78
+      name: Choppingboard
       rect:
         serializedVersion: 2
         x: 224
@@ -2332,7 +2206,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_79
+      name: Plate
       rect:
         serializedVersion: 2
         x: 240
@@ -2605,7 +2479,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_94
+      name: Stain
       rect:
         serializedVersion: 2
         x: 224
@@ -2626,7 +2500,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_95
+      name: Dirt
       rect:
         serializedVersion: 2
         x: 240
