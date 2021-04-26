@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class Replay : MonoBehaviour {
 	public static List<IReplayable> replayObjects = new List<IReplayable>();
@@ -12,10 +13,7 @@ public class Replay : MonoBehaviour {
 	private static int replayIndex;
 
 	void Start() {
-		replayObjects.Add((IReplayable) GameObject.Find("Player").GetComponent<PlayerController>());
-		foreach (GameObject e in GameObject.FindGameObjectsWithTag("Enemy")) {
-			replayObjects.Add(e.GetComponent<EnemyController>());
-		}
+		ResetReplay();
 	}
 
 	void Update() {
@@ -51,5 +49,19 @@ public class Replay : MonoBehaviour {
 
 		replayArray = replay.ToArray();
 		replayObjectsArray = replayObjects.ToArray();
+	}
+
+	public static void ResetReplay() {
+		replayObjects.Clear();
+		replay.Clear();
+
+		replayObjects.Add((IReplayable)GameObject.Find("Player").GetComponent<PlayerController>());
+		foreach (GameObject e in GameObject.FindGameObjectsWithTag("Enemy")) {
+			replayObjects.Add(e.GetComponent<EnemyController>());
+		}
+
+		IN_REPLAY = false;
+		replayIndex = 0;
+		totalFrames = 0;
 	}
 }

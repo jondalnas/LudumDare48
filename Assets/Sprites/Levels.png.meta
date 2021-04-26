@@ -40,7 +40,7 @@ TextureImporter:
     second: Couch
   - first:
       213: -3984585504711263316
-    second: Levels_12
+    second: Double door right
   - first:
       213: 8376846895221894574
     second: Toilet
@@ -148,13 +148,13 @@ TextureImporter:
     second: Levels_47
   - first:
       213: 3996885782482679672
-    second: Levels_48
+    second: Double door
   - first:
       213: -6588855351244817906
     second: Levels_49
   - first:
       213: 7630767271796596956
-    second: Levels_50
+    second: Door
   - first:
       213: 6304981005052021392
     second: Levels_51
@@ -1744,15 +1744,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_48
+      name: Double door
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 48
+        y: 196
         width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 8
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1765,36 +1765,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_49
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 192
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e0afe90a7feaf84a0800000000000000
-      internalID: -6588855351244817906
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Levels_50
+      name: Door
       rect:
         serializedVersion: 2
         x: 32
-        y: 192
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 196
+        width: 32
+        height: 8
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1802,27 +1781,6 @@ TextureImporter:
       bones: []
       spriteID: cd0ec17776ee5e960800000000000000
       internalID: 7630767271796596956
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Levels_51
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 192
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 09a06b1a1dacf7750800000000000000
-      internalID: 6304981005052021392
       vertices: []
       indices: 
       edges: []

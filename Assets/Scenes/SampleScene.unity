@@ -168,11 +168,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &366280067 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1624848911298835226, guid: 40666b6be6f28924ca368e91021a525a, type: 3}
-  m_PrefabInstance: {fileID: 595243780}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &366280072 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1624848911298835220, guid: 40666b6be6f28924ca368e91021a525a, type: 3}
@@ -329,10 +324,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1624848911298835221, guid: 40666b6be6f28924ca368e91021a525a, type: 3}
-      propertyPath: speed
-      value: 250
-      objectReference: {fileID: 0}
     - target: {fileID: 1624848911298835226, guid: 40666b6be6f28924ca368e91021a525a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -346,30 +337,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1745627058848392456, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1745627058848392456, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1745627058848392456, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1745627058848392456, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1745627058848392456, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5026341296300849247, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5026341296300849250, guid: 35533591a67188e409c2c25e410e0024, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -418,10 +385,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 6268035856748526371, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 366280067}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35533591a67188e409c2c25e410e0024, type: 3}
 --- !u!1001 &1488582452
@@ -536,10 +499,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol
       objectReference: {fileID: 0}
-    - target: {fileID: 8918243143363949979, guid: 86eee813466550a4dbb6f36f04d63719, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 366280067}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86eee813466550a4dbb6f36f04d63719, type: 3}
 --- !u!1 &1759817672
@@ -1146,14 +1105,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1238413480498586191, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: m_Name
-      value: Brawler arm
-      objectReference: {fileID: 0}
-    - target: {fileID: 3646977176157295046, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 5648123547139469320, guid: a55b4a0c4b8ed8a45ad003a0d02dbefb, type: 3}
     - target: {fileID: 5026341296300849250, guid: 35533591a67188e409c2c25e410e0024, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1201,22 +1152,6 @@ PrefabInstance:
     - target: {fileID: 5026341296300849251, guid: 35533591a67188e409c2c25e410e0024, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5026341297409950250, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 1501942216206789890, guid: a55b4a0c4b8ed8a45ad003a0d02dbefb, type: 3}
-    - target: {fileID: 6116572331691819241, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 5648123547139469320, guid: a55b4a0c4b8ed8a45ad003a0d02dbefb, type: 3}
-    - target: {fileID: 6268035856748526371, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 366280067}
-    - target: {fileID: 6800959693082983277, guid: 35533591a67188e409c2c25e410e0024, type: 3}
-      propertyPath: m_Name
-      value: Brawler arm (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35533591a67188e409c2c25e410e0024, type: 3}
