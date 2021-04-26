@@ -312,6 +312,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90.061
       objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 4.499
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_AngleLimits.m_LowerAngle
+      value: -141.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_AngleLimits.m_UpperAngle
+      value: 85.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3653844216635608553, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
       propertyPath: m_Name
       value: Door (2)
@@ -368,6 +384,22 @@ PrefabInstance:
     - target: {fileID: 3653844216635608533, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -89.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -8.502
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_AngleLimits.m_LowerAngle
+      value: -96.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_AngleLimits.m_UpperAngle
+      value: 141.9
       objectReference: {fileID: 0}
     - target: {fileID: 3653844216635608553, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
       propertyPath: m_Name
@@ -1040,6 +1072,22 @@ PrefabInstance:
     - target: {fileID: 3653844216635608533, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90.011
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -3.5041792
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.9990203
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_AngleLimits.m_LowerAngle
+      value: -149.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_AngleLimits.m_UpperAngle
+      value: 96.1
       objectReference: {fileID: 0}
     - target: {fileID: 3653844216635608553, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
       propertyPath: m_Name
@@ -4486,6 +4534,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 7.496
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -2.998
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_AngleLimits.m_LowerAngle
+      value: -102.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_AngleLimits.m_UpperAngle
+      value: 140.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3653844216635608553, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
       propertyPath: m_Name
       value: Door (5)
@@ -7228,6 +7292,22 @@ PrefabInstance:
     - target: {fileID: 3653844216635608533, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -10.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 2.503
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_AngleLimits.m_LowerAngle
+      value: -130.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_AngleLimits.m_UpperAngle
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 3653844216635608553, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
       propertyPath: m_Name
