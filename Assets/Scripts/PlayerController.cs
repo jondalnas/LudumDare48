@@ -215,7 +215,7 @@ public class PlayerController : MonoBehaviour, IReplayable {
 		if (Replay.IN_REPLAY)
 			Debug.Log("Hello");
 
-		if (teleportTimer < 0) {
+		if (teleportTimer < 0 && !killer.GetComponent<Boss>()) {
 			//Final chance
 
 			killers.Add(killer);
