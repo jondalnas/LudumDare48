@@ -64,6 +64,7 @@ public class Replay : MonoBehaviour {
 				replayIndex -= totalFrames / (5 * 50) < 10 ? 10 : totalFrames / (5 * 50);
 				
 				if (replayIndex < 0) {
+					replayIndex = 0;
 					GameLoop.RestartLevel();
 				}
 			}

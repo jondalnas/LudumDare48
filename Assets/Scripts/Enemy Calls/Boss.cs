@@ -43,11 +43,10 @@ public class Boss : EnemyController {
 	}
 
 	protected override object[] GetAnimationData() {
-		throw new System.NotImplementedException();
+		return new object[] { anim.GetBool("Run") };
 	}
 
 	protected override void HitTarget() {
-		throw new System.NotImplementedException();
 	}
 
 	protected override void Init() {
@@ -62,15 +61,13 @@ public class Boss : EnemyController {
 	}
 
 	protected override void SetAnimationData(object[] data) {
-		throw new System.NotImplementedException();
+		anim.SetBool("Run", (bool)data[0]);
 	}
 
 	protected override void StopAttack() {
-		throw new System.NotImplementedException();
 	}
 
 	protected override void TakenOver() {
-		throw new System.NotImplementedException();
 	}
 
 	protected override void UpdateEnemy() {
