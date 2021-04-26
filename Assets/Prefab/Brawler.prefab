@@ -9796,7 +9796,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSprite: {fileID: -3875268190921908321, guid: a55b4a0c4b8ed8a45ad003a0d02dbefb, type: 3}
   decapSprite: {fileID: -7925860256989756789, guid: a55b4a0c4b8ed8a45ad003a0d02dbefb, type: 3}
+  patrolPoints: []
   speed: 5
+  patrolSpeed: 2
   minDist: 0.5
   closeDist: 1.2
 --- !u!95 &1178608909203304882
@@ -9994,7 +9996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2808940458086292129}
   - component: {fileID: 2128179575110985369}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: Hit collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -26,11 +26,11 @@ public class Brawler : EnemyController {
 
 	override protected void NoticePlayer() {
 		hasTarget = true;
-		target = player;
+		target = player.transform;
 	}
 
 	override protected void HitTarget() {
-		if (target == player) {
+		if (target == player.transform) {
 			player.GetComponent<PlayerController>().Kill(gameObject);
 			rb.velocity = Vector2.zero;
 		}
@@ -46,11 +46,6 @@ public class Brawler : EnemyController {
 		if (dist < minDist) {
 			HitTarget();
 		} else {
-			rb.velocity = move / dist * speed;
-			Quaternion rot = Quaternion.LookRotation(move, Vector3.back);
-			rot.x = 0;
-			rot.y = 0;
-			transform.rotation = rot;
 			anim.SetBool("Run", true);
 		}
 	}

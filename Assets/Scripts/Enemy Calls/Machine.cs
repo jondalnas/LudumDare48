@@ -1,43 +1,47 @@
 using UnityEngine;
 
-public class Pistol : EnemyController {
-	public float pistolCooldown = 0.25f;
-	private float timer;
+public class Machine : EnemyController {
+	private GameObject shotBullet;
 	public GameObject bullet;
 	public float bulletDistance = 1f;
-	private GameObject shotBullet;
 
-	override protected void Init() { }
+	protected override void Attack() {
+		anim.SetBool("Shoot", true);
+	}
 
-	override protected void NoticePlayer() {
+	protected override void AwayFromTarget() {
+		anim.SetBool("Shoot", false);
+		anim.SetBool("Gun", false);
+	}
+
+	protected override void CloseToTarget() {
+		if (target == player.transform) {
+			anim.SetBool("Gun", true);
+			rb.velocity = Vector2.zero;
+			anim.SetBool("Shoot", true);		
+		}
+	}
+
+	protected override void HitTarget() {
+	}
+
+	protected override void Init() {
+	}
+
+	protected override void NoticePlayer() {
 		hasTarget = true;
 		target = player.transform;
 	}
 
-	override protected void HitTarget() { }
-
-	override protected void AwayFromTarget() {
-		anim.SetBool("Gun", false);
+	protected override void StopAttack() {
+		anim.SetBool("Shoot", false);
 	}
 
-	override protected void CloseToTarget() {
-		if (target == player.transform) {
-			anim.SetBool("Gun", true);
-			rb.velocity = Vector2.zero;
-			timer += Time.deltaTime;
-			if (pistolCooldown < timer) {
-				anim.SetTrigger("Shoot");
-				timer = 0;
-			}
-		}
+	protected override void TakenOver() {
+		anim.SetBool("Gun", true);
 	}
 
-	override protected void Attack() {
-		anim.SetTrigger("Shoot");
-	}
-
-	protected override void PlayerAvoidedAttack() {
-		StartCoroutine(shotBullet.GetComponent<Bullet>().Destroy());
+	protected override void UpdateEnemy() {
 	}
 
 	public void BulletRayCast(Transform bullet) {
@@ -68,10 +72,7 @@ public class Pistol : EnemyController {
 		}
 	}
 
-	protected override void TakenOver() {
-		anim.SetBool("Gun", true);
+	protected override void PlayerAvoidedAttack() {
+		StartCoroutine(shotBullet.GetComponent<Bullet>().Destroy());
 	}
-
-	protected override void StopAttack() { }
-	protected override void UpdateEnemy() { }
 }
