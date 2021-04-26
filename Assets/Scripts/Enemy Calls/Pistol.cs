@@ -62,7 +62,7 @@ public class Pistol : EnemyController {
 			hit.transform.GetComponent<PlayerController>().Kill(gameObject);
 
 			Vector3 toPlayer = transform.position - hit.transform.position;
-			shotBullet = Instantiate(bullet, toPlayer.normalized * bulletDistance, Quaternion.Euler(0, 0, Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg + 180));
+			shotBullet = Instantiate(bullet, toPlayer.normalized * bulletDistance + hit.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg + 180));
 			shotBullet.GetComponent<Bullet>().shooting = transform;
 		} else if (hit.transform.CompareTag("Enemy")) {
 			hit.transform.GetComponent<EnemyController>().Kill(transform.up, DeathStyle.SHOT);
