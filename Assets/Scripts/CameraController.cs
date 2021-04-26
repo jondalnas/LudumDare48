@@ -7,6 +7,8 @@ public class CameraController : MonoBehaviour {
 	public float cameraTargetFollow = 5f;
 	public Material blackAndWhiteMat;
 	public Material grain;
+	[HideInInspector]
+	public float grainyness = 0;
 	private float blend;
 
 	void Start() {
@@ -31,6 +33,7 @@ public class CameraController : MonoBehaviour {
 
 		if (Time.timeScale == 1) {
 			Graphics.Blit(source, destination, grain);
+			grain.SetFloat("_Strength", grainyness + 0.05f);
 			return;
 		}
 

@@ -210,9 +210,6 @@ public class PlayerController : MonoBehaviour, IReplayable {
 	}
 
 	public void Kill(GameObject killer) {
-		if (Replay.IN_REPLAY)
-			Debug.Log("Hello");
-
 		if (teleportTimer < 0) {
 			//Final chance
 
@@ -223,7 +220,7 @@ public class PlayerController : MonoBehaviour, IReplayable {
 			timeScaleTarget = 0;
 			Time.timeScale = 0.1f;
 		} else {
-			//Kill player
+			Replay.ReplayBackwards();
 		}
 	}
 

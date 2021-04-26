@@ -265,7 +265,7 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 		this.style = style;
 
 		if (isAwake)
-			GameObject.Find("-GAME LOOP-").SendMessage("EnemyDead");
+			GameLoop.EnemyDead();
 		anim.enabled = false;
 
 		foreach (SpriteRenderer renderer in GetComponentsInChildren<SpriteRenderer>()) {

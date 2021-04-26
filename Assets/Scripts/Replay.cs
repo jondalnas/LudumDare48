@@ -10,6 +10,7 @@ public class Replay : MonoBehaviour {
 	private static int totalFrames;
 
 	public static bool IN_REPLAY;
+	private static bool forwards = true;
 	private static int replayIndex;
 
 	private bool loop = true;
@@ -26,37 +27,57 @@ public class Replay : MonoBehaviour {
 
 			totalFrames++;
 		} else {
-			for (int i = 0; i < replayObjects.Count; i++) {
-				int index = i + replayObjects.Count * replayIndex;
+			if (forwards) {
+				for (int i = 0; i < replayObjects.Count; i++) {
+					int index = i + replayObjects.Count * replayIndex;
 
-				replayObjectsArray[i].ReplayData(replayIndex, replayArray[index]);
-			}
+					replayObjectsArray[i].ReplayData(replayIndex, replayArray[index]);
+				}
 
-			replayIndex++;
+				replayIndex++;
 
-			if (replayIndex >= totalFrames) {
-				replayIndex = 0;
+				if (replayIndex >= totalFrames) {
+					replayIndex = 0;
 
-				if (!loop) {
-					IN_REPLAY = false;
+					if (!loop) {
+						IN_REPLAY = false;
 
-					foreach (IReplayable ro in replayObjects) {
-						ro.ReplayEnded();
+						foreach (IReplayable ro in replayObjects) {
+							ro.ReplayEnded();
+						}
+					} else {
+						foreach (IReplayable ro in replayObjects) {
+							ro.ReplayReset();
+						}
 					}
-				} else {
-					foreach (IReplayable ro in replayObjects) {
-						ro.ReplayReset();
-					}
+				}
+			} else {
+				Camera.main.GetComponent<CameraController>().grainyness = Mathf.Pow(1.0f - (float)replayIndex / totalFrames, 20);
+
+				for (int i = 0; i < replayObjects.Count; i++) {
+					int index = i + replayObjects.Count * replayIndex;
+
+					replayObjectsArray[i].ReplayData(replayIndex, replayArray[index]);
+				}
+
+				replayIndex -= 10;
+				if (replayIndex < 0) {
+					GameLoop.RestartLevel();
 				}
 			}
 		}
 	}
 
 	public static void StartReplay() {
+		if (IN_REPLAY) return;
+
+		Time.timeScale = 1;
+
 		foreach (IReplayable ro in replayObjects) {
 			ro.ReplayReset();
 		}
 
+		forwards = true;
 		IN_REPLAY = true;
 
 		replayArray = replay.ToArray();
@@ -79,5 +100,20 @@ public class Replay : MonoBehaviour {
 		IN_REPLAY = false;
 		replayIndex = 0;
 		totalFrames = 0;
+	}
+
+	public static void ReplayBackwards() {
+		if (IN_REPLAY) return;
+
+		Time.timeScale = 1;
+
+		IN_REPLAY = true;
+
+		forwards = false;
+
+		replayArray = replay.ToArray();
+		replayObjectsArray = replayObjects.ToArray();
+
+		replayIndex = totalFrames - 1;
 	}
 }

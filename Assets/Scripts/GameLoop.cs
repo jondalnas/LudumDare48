@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +14,6 @@ public class GameLoop : MonoBehaviour {
 	}
 
 	void Update() {
-		Debug.Log(levelIndex);
 		if (hasBeatenStage && Input.anyKeyDown) ForceNextLevel();
 	}
 
@@ -50,5 +50,11 @@ public class GameLoop : MonoBehaviour {
 
 	public static void EnemySeen() {
 		awokenEnemies++;
+	}
+
+	internal static void RestartLevel() {
+		SceneManager.LoadScene(levelIndex);
+		Replay.ResetReplay();
+		hasBeatenStage = false;
 	}
 }
