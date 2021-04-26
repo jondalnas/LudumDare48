@@ -199,22 +199,22 @@ TextureImporter:
     second: The sun
   - first:
       213: -6686579958487153702
-    second: Levels_66
+    second: Boss floor
   - first:
       213: 1745011409924208314
-    second: Levels_67
+    second: Boss wall corner
   - first:
       213: 5386636686321026150
-    second: Levels_68
+    second: Boss wall
   - first:
       213: -8813448848938441515
-    second: Levels_69
+    second: Red carpet
   - first:
       213: 1550738875315662915
-    second: Levels_70
+    second: Statue
   - first:
       213: -5018345752150774923
-    second: Levels_71
+    second: Boss chair
   - first:
       213: 8164004635126753592
     second: Levels_72
@@ -250,7 +250,7 @@ TextureImporter:
     second: Levels_84
   - first:
       213: 9133059471639126398
-    second: Levels_85
+    second: Red carpet middle
   - first:
       213: -3630950033009337618
     second: Levels_86
@@ -1933,7 +1933,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_66
+      name: Boss floor
       rect:
         serializedVersion: 2
         x: 32
@@ -1954,7 +1954,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_67
+      name: Boss wall corner
       rect:
         serializedVersion: 2
         x: 48
@@ -1975,7 +1975,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_68
+      name: Boss wall
       rect:
         serializedVersion: 2
         x: 64
@@ -1996,7 +1996,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_69
+      name: Red carpet
       rect:
         serializedVersion: 2
         x: 80
@@ -2017,7 +2017,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_70
+      name: Statue
       rect:
         serializedVersion: 2
         x: 96
@@ -2038,13 +2038,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_71
+      name: Boss chair
       rect:
         serializedVersion: 2
         x: 112
-        y: 176
-        width: 16
-        height: 16
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2054,27 +2054,6 @@ TextureImporter:
       bones: []
       spriteID: 57b66f270214b5ab0800000000000000
       internalID: -5018345752150774923
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Levels_72
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 176
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8396f5df5fe5c4170800000000000000
-      internalID: 8164004635126753592
       vertices: []
       indices: 
       edges: []
@@ -2290,7 +2269,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Levels_85
+      name: Red carpet middle
       rect:
         serializedVersion: 2
         x: 80
@@ -2327,48 +2306,6 @@ TextureImporter:
       bones: []
       spriteID: eea194dbe264c9dc0800000000000000
       internalID: -3630950033009337618
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Levels_87
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 499aa80db5356dec0800000000000000
-      internalID: -3542552403074438764
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Levels_88
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 72448310ec21bf610800000000000000
-      internalID: 1655937963981816871
       vertices: []
       indices: 
       edges: []
