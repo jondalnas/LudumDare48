@@ -150,10 +150,14 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 					if (hasTarget) {
 						target = patrolPoints[0];
 					} else {
+						target = null;
 						rb.bodyType = RigidbodyType2D.Static;
 					}
 
 					playerNoticed = false;
+
+					TargetDead();
+					return;
 				}
 			}
 
@@ -238,6 +242,8 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 	protected abstract void TakenOver();
 
 	protected abstract void PlayerAvoidedAttack();
+
+	protected abstract void TargetDead();
 
 	IEnumerator StopBlood(float time) {
 		yield return new WaitForSeconds(time);

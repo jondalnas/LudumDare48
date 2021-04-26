@@ -69,6 +69,11 @@ public class Machine : EnemyController {
 		}
 	}
 
+	protected override void TargetDead() {
+		anim.SetBool("Gun", false);
+		anim.SetBool("Shoot", false);
+	}
+
 	protected override void PlayerAvoidedAttack() {
 		StartCoroutine(shotBullet.GetComponent<Bullet>().Destroy());
 	}

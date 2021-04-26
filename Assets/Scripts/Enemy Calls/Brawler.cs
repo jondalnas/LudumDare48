@@ -61,6 +61,10 @@ public class Brawler : EnemyController {
 		anim.SetBool("Punch", false);
 	}
 
+	protected override void TargetDead() {
+		anim.SetBool("Punch", false);
+	}
+
 	protected override object[] GetAnimationData() {
 		return new object[] { anim.GetBool("Punch"), anim.GetBool("Run") };
 	}
