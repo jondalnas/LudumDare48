@@ -101,4 +101,6 @@ public class Boss : EnemyController {
 		player.GetComponent<PlayerController>().knockedBack = true;
 		player.GetComponent<Rigidbody2D>().velocity = (player.transform.position - transform.position).normalized * playerKnockback;
 	}
+
+	protected override void TargetDead() { }
 }

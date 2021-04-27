@@ -6,6 +6,7 @@ public class Pistol : EnemyController {
 	public GameObject bullet;
 	public float bulletDistance = 1f;
 	private GameObject shotBullet;
+	public GameObject hitWallParticle;
 
 	private bool shoot;
 
@@ -17,12 +18,13 @@ public class Pistol : EnemyController {
 
 	override protected void AwayFromTarget() {
 		anim.SetBool("Gun", false);
+		timer = 0;
 	}
 
 	override protected void CloseToTarget() {
 		move = Vector3.zero;
 
-		if (target == player.transform) {
+		if (target.CompareTag("Player")) {
 			anim.SetBool("Gun", true);
 			rb.velocity = Vector2.zero;
 			timer += Time.deltaTime;
@@ -61,20 +63,31 @@ public class Pistol : EnemyController {
 
 	private void ShootBullet(RaycastHit2D hit) {
 		if (hit.transform.CompareTag("Player")) {
-			hit.transform.GetComponent<PlayerController>().Kill(gameObject);
+			PlayerController player;
 
-			Vector3 toPlayer = transform.position - hit.transform.position;
-			shotBullet = Instantiate(bullet, toPlayer.normalized * bulletDistance + hit.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg + 180));
-			shotBullet.GetComponent<Bullet>().shooting = transform;
+			if (player = hit.transform.GetComponent<PlayerController>()) {
+				player.Kill(gameObject);
+
+				Vector3 toPlayer = transform.position - hit.transform.position;
+				shotBullet = Instantiate(bullet, toPlayer.normalized * bulletDistance + hit.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg + 180));
+				shotBullet.GetComponent<Bullet>().shooting = transform;
+			} else {
+				hit.transform.GetComponent<EnemyController>().Kill(transform.up, DeathStyle.SHOT);
+			}
 		} else if (hit.transform.CompareTag("Enemy")) {
 			hit.transform.GetComponent<EnemyController>().Kill(transform.up, DeathStyle.SHOT);
 		} else {//Hits wall
-
+			Quaternion rot = Quaternion.LookRotation(hit.normal, Vector3.back);
+			Instantiate(hitWallParticle, hit.point, rot);
 		}
 	}
 
 	protected override void TakenOver() {
 		anim.SetBool("Gun", true);
+	}
+
+	protected override void TargetDead() {
+		anim.SetBool("Gun", false);
 	}
 
 	protected override object[] GetAnimationData() {
