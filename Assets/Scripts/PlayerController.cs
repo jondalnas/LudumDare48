@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour, IReplayable {
 	private Quaternion lockedRot;
 	private BoxCollider2D scytheCollider;
 	private ContactFilter2D enemyContactFilter;
+	private ContactFilter2D enemyBossContactFilter;
 
 	private CircleCollider2D mouseCollider;
 	private Transform mouseColliderTransform;
@@ -61,6 +62,11 @@ public class PlayerController : MonoBehaviour, IReplayable {
 			layerMask = LayerMask.GetMask("Enemy")
 		};
 
+		enemyBossContactFilter = new ContactFilter2D {
+			useLayerMask = true,
+			layerMask = LayerMask.GetMask("Enemy") | LayerMask.GetMask("Boss")
+		};
+
 		winCol = GameObject.Find("Win").GetComponent<Collider2D>();
 		playerCol = GetComponent<Collider2D>();
 
@@ -69,7 +75,7 @@ public class PlayerController : MonoBehaviour, IReplayable {
 	}
 
 	void Update() {
-		if (Replay.IN_REPLAY) return;
+		if (Replay.IN_REPLAY || knockedBack) return;
 
 		Time.timeScale += (timeScaleTarget - Time.timeScale) / 10f;
 
@@ -125,7 +131,7 @@ public class PlayerController : MonoBehaviour, IReplayable {
 				}
 			} else { //Is swinging
 				Collider2D[] cols = new Collider2D[1];
-				if (scytheCollider.OverlapCollider(enemyContactFilter, cols) != 0) {
+				if (scytheCollider.OverlapCollider(enemyBossContactFilter, cols) != 0) {
 					if (cols[0].gameObject.CompareTag("Enemy")) {
 						cols[0].gameObject.GetComponent<EnemyController>().Kill(cols[0].transform.position - transform.position, EnemyController.DeathStyle.DECAP);
 					}
@@ -250,6 +256,10 @@ public class PlayerController : MonoBehaviour, IReplayable {
 		} else {
 			Replay.ReplayBackwards();
 		}
+	}
+
+	void OnCollisionEnter2D(Collision2D collision) {
+		if (knockedBack) knockedBack = false;
 	}
 
 	public void ScytheReturned() {

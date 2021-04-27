@@ -11,6 +11,8 @@ public class GameLoop : MonoBehaviour {
 	private static bool loading;
 
 	void Awake() {
+		if (SceneManager.GetActiveScene().buildIndex != 0) levelIndex = SceneManager.GetActiveScene().buildIndex;
+
 		DontDestroyOnLoad(gameObject);
 		SceneManager.sceneLoaded += OnSceneLoaded;
 	}

@@ -1,26 +1,86 @@
 using UnityEngine;
+using System.Collections;
 
 public class Boss : EnemyController {
 	private int hitCount = 0;
 	public float playerKnockback;
 	public float knockbackTime;
+	private float knockbackTimer;
 	private float timer;
 	private Vector2 chargeDir;
 	public float chargeSpeed;
-	public float invTime = 1;
-	private float invTimer;
-	private bool charging;
 	public float knockedoutTime = 1;
+	public float walkingTime = 3;
 	public float knockedoutTimer;
+	private State state;
+
+	private enum State {
+		walking, charging, knockedOut
+	}
+
+	void Update() {
+		timer += Time.deltaTime;
+
+		if (dead) {
+			Camera.main.GetComponent<CameraController>().grainyness = Mathf.Pow(timer / 3f, 10) * 2;
+
+			if (timer > 3) GameLoop.LoadlLevel(5);
+
+			return;
+		}
+
+		knockbackTimer += Time.deltaTime;
+
+		Vector3 toPlayer = player.transform.position - transform.position;
+		float dist = toPlayer.magnitude;
+
+		if (state == State.walking) {
+			Vector3 dir = toPlayer / dist;
+			move = dir * speed;
+
+			if ((dist < 3 && timer > walkingTime * 0.25) || timer > walkingTime) {
+				state = State.charging;
+				chargeDir = dir;
+			}
+		}
+
+		if (state == State.charging) {
+			move = chargeDir * chargeSpeed;
+		}
+
+		if (state == State.knockedOut) {
+			move = Vector3.zero;
+
+			if (timer > knockedoutTime) {
+				state = State.walking;
+			}
+		}
+
+		if (knockbackTimer > knockbackTime) {
+			player.GetComponent<PlayerController>().knockedBack = false;
+		}
+
+		Quaternion rot = Quaternion.LookRotation(move, Vector3.back);
+		rot.x = 0;
+		rot.y = 0;
+		transform.rotation = rot;
+	}
+
+	void FixedUpdate() {
+		rb.velocity = move;
+	}
 
 	private void OnCollisionEnter2D(Collision2D collision) {
-		charging = false;
+		if (state == State.charging) {
+			state = State.knockedOut;
+			timer = 0;
+		}
+
 		if (collision.transform.CompareTag("Player")) {
 			collision.transform.GetComponent<PlayerController>().Kill(gameObject);
 		}
-		knockedoutTimer = 0;
-		
 	}
+
 	protected override void Attack() {
 
 	}
@@ -30,16 +90,6 @@ public class Boss : EnemyController {
 	}
 
 	protected override void CloseToTarget() {
-		if (!charging) {
-			charging = true;
-			chargeDir = (player.transform.position - transform.position).normalized;
-		} else {
-			move = chargeDir * chargeSpeed;
-		}
-
-		if (knockedoutTimer < knockedoutTime) {
-			move = Vector2.zero;
-		}
 	}
 
 	protected override object[] GetAnimationData() {
@@ -50,7 +100,7 @@ public class Boss : EnemyController {
 	}
 
 	protected override void Init() {
-		knockedoutTimer = knockedoutTime;
+		rb.bodyType = RigidbodyType2D.Dynamic;
 	}
 
 	protected override void NoticePlayer() {
@@ -71,32 +121,33 @@ public class Boss : EnemyController {
 	}
 
 	protected override void UpdateEnemy() {
-		knockedoutTimer += Time.deltaTime;
-		invTimer += Time.deltaTime;
-		timer += Time.deltaTime;
-		if (knockbackTime < timer) {
-			player.GetComponent<PlayerController>().knockedBack = false;
-		}
-
-
 	}
 
 	public override void Kill(Vector2 dir, DeathStyle style) {
-		if (invTimer < invTime) {
-			return;
-		}
+		if (state != State.knockedOut) return;
 
-		invTimer = 0;
+		if (hitCount == 4) {
+			timer = 0;
 
-		if (hitCount == 5) {
 			player.GetComponent<PlayerController>().knockedBack = false;
+
+			Quaternion rot = Quaternion.LookRotation(player.transform.position - transform.position, Vector3.back);
+			rot.x = 0;
+			rot.y = 0;
+			transform.rotation = rot;
+
 			Kill(DeathStyle.DECAP);
+
 			return;
 		}
+
 		hitCount++;
-		timer = 0;
+		knockbackTimer = 0;
 		player.GetComponent<PlayerController>().knockedBack = true;
 		player.GetComponent<Rigidbody2D>().velocity = (player.transform.position - transform.position).normalized * playerKnockback;
+
+		state = State.walking;
+		timer = 0;
 	}
 
 	protected override void TargetDead() { }

@@ -9,7 +9,7 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 	private ParticleSystem blood;
 	private ParticleSystem insideBlood;
 	private Transform bloodTransform;
-	private bool dead;
+	protected bool dead;
 	private bool lastDead;
 	private DeathStyle style;
 	private bool inside;

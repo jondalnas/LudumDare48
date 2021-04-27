@@ -1413,6 +1413,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Pistol
       objectReference: {fileID: 0}
+    - target: {fileID: 5273621489548819690, guid: 1ef2adbf29c8aa74e86f72c4f51e6f49, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5273621489548819690, guid: 1ef2adbf29c8aa74e86f72c4f51e6f49, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6563984804601080243, guid: 1ef2adbf29c8aa74e86f72c4f51e6f49, type: 3}
       propertyPath: m_RootOrder
       value: 1

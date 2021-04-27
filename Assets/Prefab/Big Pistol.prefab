@@ -124,7 +124,7 @@ MonoBehaviour:
   speed: 2
   patrolSpeed: 0
   minDist: 0.5
-  closeDist: 3
+  closeDist: 10
   playerKnockback: 10
   knockbackTime: 1
   chargeSpeed: 7
