@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class CameraController : MonoBehaviour {
 	public Transform target;
@@ -10,6 +11,9 @@ public class CameraController : MonoBehaviour {
 	[HideInInspector]
 	public float grainyness = 0;
 	private float blend;
+	public Transform replayPoint;
+	public int scalex;
+	public int scaley;
 
 	void Start() {
 		blackAndWhiteMat = new Material(Shader.Find("Hidden/Black and White"));
@@ -19,6 +23,12 @@ public class CameraController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
+		if (Replay.IN_REPLAY) {
+			transform.position = replayPoint.position;
+			GetComponent<PixelPerfectCamera>().refResolutionX = 16*scalex;
+			GetComponent<PixelPerfectCamera>().refResolutionY = 9*scaley;
+		}
+
 		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 		Vector3 targetToMouse = mouseWorldPos - target.position;
