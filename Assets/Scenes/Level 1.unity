@@ -1201,6 +1201,14 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1192305023684357676, guid: 3e8d807c03d618e41b2856dc4bbe17bc, type: 3}
+      propertyPath: m_AngleLimits.m_LowerAngle
+      value: -150
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192305023684357676, guid: 3e8d807c03d618e41b2856dc4bbe17bc, type: 3}
+      propertyPath: m_AngleLimits.m_UpperAngle
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 1192305023684357677, guid: 3e8d807c03d618e41b2856dc4bbe17bc, type: 3}
       propertyPath: m_Name
       value: Double door (2)
@@ -10421,6 +10429,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1192305023684357676, guid: 3e8d807c03d618e41b2856dc4bbe17bc, type: 3}
+      propertyPath: m_AngleLimits.m_LowerAngle
+      value: -150
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192305023684357676, guid: 3e8d807c03d618e41b2856dc4bbe17bc, type: 3}
+      propertyPath: m_AngleLimits.m_UpperAngle
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 1192305023684357677, guid: 3e8d807c03d618e41b2856dc4bbe17bc, type: 3}
       propertyPath: m_Name
       value: Double door
@@ -10440,7 +10456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3653844216635608533, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.986
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 3653844216635608533, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10480,11 +10496,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -3.986
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_AngleLimits.m_LowerAngle
+      value: -150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653844216635608534, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
+      propertyPath: m_AngleLimits.m_UpperAngle
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3653844216635608553, guid: 0dc6746f6d9577c4aadb7733a2df59c3, type: 3}
       propertyPath: m_Name
