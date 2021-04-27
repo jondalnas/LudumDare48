@@ -100,7 +100,14 @@ MonoBehaviour:
   target: {fileID: 0}
   cameraMouseFollow: 0.01
   cameraTargetFollow: 5
+  blackAndWhite: {fileID: 4800000, guid: dbb34633081925f49b02cdbb6ea48aec, type: 3}
+  grain: {fileID: 4800000, guid: d8aba8c6f8e50374bbdbcdf6562e35d7, type: 3}
   blackAndWhiteMat: {fileID: 0}
+  grainMat: {fileID: 0}
+  grainyness: 0
+  replayPoint: {fileID: 0}
+  scalex: 0
+  scaley: 0
 --- !u!114 &1240551523266350369
 MonoBehaviour:
   m_ObjectHideFlags: 0

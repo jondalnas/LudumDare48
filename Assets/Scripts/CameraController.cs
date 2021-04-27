@@ -6,8 +6,10 @@ public class CameraController : MonoBehaviour {
 	public Transform target;
 	public float cameraMouseFollow = 0.01f;
 	public float cameraTargetFollow = 5f;
-	public Material blackAndWhiteMat;
-	public Material grain;
+	public Shader blackAndWhite;
+	public Shader grain;
+	private Material blackAndWhiteMat;
+	private Material grainMat;
 	[HideInInspector]
 	public float grainyness = 0;
 	private float blend;
@@ -16,14 +18,14 @@ public class CameraController : MonoBehaviour {
 	public int scaley;
 
 	void Start() {
-		blackAndWhiteMat = new Material(Shader.Find("Hidden/Black and White"));
-		grain = new Material(Shader.Find("Hidden/Grain"));
+		blackAndWhiteMat = new Material(blackAndWhite);
+		grainMat = new Material(grain);
 
 		transform.position = target.position;
 	}
 
 	void FixedUpdate() {
-		if (Replay.IN_REPLAY) {
+		if (Replay.IN_REPLAY && Replay.forwards) {
 			transform.position = replayPoint.position;
 			GetComponent<PixelPerfectCamera>().refResolutionX = 16*scalex;
 			GetComponent<PixelPerfectCamera>().refResolutionY = 9*scaley;
@@ -42,8 +44,8 @@ public class CameraController : MonoBehaviour {
 		blend = (blend * 19.0f + Time.timeScale) * 0.05f;
 
 		if (Time.timeScale == 1) {
-			Graphics.Blit(source, destination, grain);
-			grain.SetFloat("_Strength", grainyness + 0.05f);
+			Graphics.Blit(source, destination, grainMat);
+			grainMat.SetFloat("_Strength", grainyness + 0.05f);
 			return;
 		}
 

@@ -49,7 +49,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4855,7 +4855,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -9803,6 +9803,7 @@ MonoBehaviour:
   closeDist: 3
   bullet: {fileID: 2744536441486021458, guid: 1364661f0ff4b1849add234081fada32, type: 3}
   bulletDistance: 1
+  hitWallParticle: {fileID: 8130731912171444910, guid: 6363edfcc0e09d44bb889ab9225c14d1, type: 3}
 --- !u!95 &8511528131868838723
 Animator:
   serializedVersion: 3

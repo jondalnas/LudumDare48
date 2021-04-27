@@ -56,6 +56,7 @@ public abstract class EnemyController : MonoBehaviour, IReplayable {
 		insideBlood = transform.Find("Inside Blood").GetComponent<ParticleSystem>();
 		blood.Stop();
 		insideBlood.Stop();
+
 		sr = GetComponentInChildren<SpriteRenderer>();
 		defaultSprite = sr.sprite;
 

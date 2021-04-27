@@ -128,8 +128,8 @@ MonoBehaviour:
   playerKnockback: 10
   knockbackTime: 1
   chargeSpeed: 7
-  invTime: 1
   knockedoutTime: 1
+  walkingTime: 3
   knockedoutTimer: 0
 --- !u!1 &2078867837152965777
 GameObject:
@@ -180,7 +180,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5069,7 +5069,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

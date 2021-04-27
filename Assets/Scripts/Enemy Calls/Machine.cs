@@ -4,6 +4,7 @@ public class Machine : EnemyController {
 	private GameObject shotBullet;
 	public GameObject bullet;
 	public float bulletDistance = 1f;
+	public GameObject hitWallParticle;
 
 	protected override void Attack() {
 		anim.SetBool("Shoot", true);
@@ -17,10 +18,10 @@ public class Machine : EnemyController {
 	protected override void CloseToTarget() {
 		move = Vector3.zero;
 
-		if (target == player.transform) {
+		if (target.CompareTag("Player")) {
 			anim.SetBool("Gun", true);
 			rb.velocity = Vector2.zero;
-			anim.SetBool("Shoot", true);		
+			anim.SetBool("Shoot", true);
 		}
 	}
 
@@ -49,6 +50,8 @@ public class Machine : EnemyController {
 	}
 
 	public void Shoot() {
+		if (Replay.IN_REPLAY) return;
+
 		RaycastHit2D[] hits = new RaycastHit2D[1];
 		if (col.Raycast(transform.up, hits, Mathf.Infinity, ~((1 << LayerMask.NameToLayer("Ignore Raycast")) | (1 << LayerMask.NameToLayer("UI")))) != 0) {
 			ShootBullet(hits[0]);
@@ -57,15 +60,22 @@ public class Machine : EnemyController {
 
 	private void ShootBullet(RaycastHit2D hit) {
 		if (hit.transform.CompareTag("Player")) {
-			hit.transform.GetComponent<PlayerController>().Kill(gameObject);
+			PlayerController player;
 
-			Vector3 toPlayer = transform.position - hit.transform.position;
-			shotBullet = Instantiate(bullet, toPlayer.normalized * bulletDistance, Quaternion.Euler(0, 0, Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg + 180));
-			shotBullet.GetComponent<Bullet>().shooting = transform;
+			if (player = hit.transform.GetComponent<PlayerController>()) {
+				player.Kill(gameObject);
+
+				Vector3 toPlayer = transform.position - hit.transform.position;
+				shotBullet = Instantiate(bullet, toPlayer.normalized * bulletDistance + hit.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg + 180));
+				shotBullet.GetComponent<Bullet>().shooting = transform;
+			} else {
+				hit.transform.GetComponent<EnemyController>().Kill(transform.up, DeathStyle.SHOT);
+			}
 		} else if (hit.transform.CompareTag("Enemy")) {
 			hit.transform.GetComponent<EnemyController>().Kill(transform.up, DeathStyle.SHOT);
 		} else {//Hits wall
-
+			Quaternion rot = Quaternion.LookRotation(hit.normal, Vector3.back);
+			Instantiate(hitWallParticle, hit.point, rot);
 		}
 	}
 

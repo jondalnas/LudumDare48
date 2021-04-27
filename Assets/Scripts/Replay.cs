@@ -10,7 +10,7 @@ public class Replay : MonoBehaviour {
 	private static int totalFrames;
 
 	public static bool IN_REPLAY;
-	private static bool forwards = true;
+	public static bool forwards = true;
 	private static int replayIndex;
 
 	private bool loop = true;
